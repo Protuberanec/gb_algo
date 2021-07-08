@@ -6,10 +6,12 @@
 
 #IncludeRegexTransform: 
 
-H:/YandexDisk/study/geekbrains/AlgoHW/cpp_proj/main.cpp
+H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj/main.cpp
 iostream
 -
 limits
+-
+assert.h
 -
 assert.h
 -

@@ -1,37 +1,49 @@
 #include <iostream>
 #include <limits>
 #include <assert.h>
-//task2
-int perepol(unsigned char a1, unsigned char a2) {
-    int status = 0;
+#include <assert.h>
 
-    unsigned char temp_max = std::numeric_limits<unsigned char>::max() / a2;
+using namespace std;
 
-    if (a1 > temp_max) {
-        status = 1;
+bool isNaturalNumb(int num) {
+    int count_del = 0;
+
+    for (int i = 2; i <= num/2; i++) {
+        if (!(num % i)) {
+            if (i != num) {
+                return false;
+            }
+        }
     }
-    return status;
+
+    return true;    //natural number
 }
 
-void test_perpol() {
-    assert(perepol(100,10) == 1);
-    assert(perepol(10,10) == 0);
-    assert(perepol(33,1) == 0);
-    assert(perepol(33,10) == 1);
-    assert(perepol(50,50) == 1);
-    assert(perepol(25,25) == 1);
-    assert(perepol(250,1) == 0);
-    assert(perepol(200,2) == 1);
+void Test_isNaturalNumb() {
+    assert(isNaturalNumb(1) == true);
+    assert(isNaturalNumb(2) == true);
+    assert(isNaturalNumb(4) == false);
+    assert(isNaturalNumb(9) == false);
+    assert(isNaturalNumb(11) == true);
+    assert(isNaturalNumb(131) == true);
+    assert(isNaturalNumb(132) == false);
+    assert(isNaturalNumb(657) == false);
+    assert(isNaturalNumb(1001) == false);   //7
+    assert(isNaturalNumb(1003) == false);    //17
 }
 
-int main() {
-	
-	//hw1
-    std::cout << "你好，世界" << std::endl;
-    std::cout << "Hello world" << std::endl;
 
-	//hw2 algo
-	test_perpol();
+
+int main(int argc, char** argv) {
+    Test_isNaturalNumb();
+	if (argc < 2) {
+	    cout << "give me an integer number, as parameter of program" << endl;
+	    return 1;
+	}
+
+	//always assume, that number is integer
+	cout << "Number is ";
+    cout << (isNaturalNumb(atoi(argv[1])) == true ? "natural" : "not natural") << endl;
 
     return 0;
 }

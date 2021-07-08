@@ -1,4 +1,4 @@
-# Install script for directory: H:/YandexDisk/study/geekbrains/AlgoHW/cpp_proj
+# Install script for directory: H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "H:/YandexDisk/study/geekbrains/AlgoHW/cpp_proj/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
