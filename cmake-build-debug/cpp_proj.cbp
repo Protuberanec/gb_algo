@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj/array_func.h">
+			<Option target="cpp_proj"/>
+		</Unit>
+		<Unit filename="H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj/arry_func.cpp">
+			<Option target="cpp_proj"/>
+		</Unit>
 		<Unit filename="H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj/main.cpp">
 			<Option target="cpp_proj"/>
 		</Unit>

@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/cpp_proj.dir/arry_func.cpp.obj"
   "CMakeFiles/cpp_proj.dir/main.cpp.obj"
   "cpp_proj.exe"
   "cpp_proj.exe.manifest"

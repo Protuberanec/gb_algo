@@ -141,6 +141,33 @@ cpp_proj/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/build
 .PHONY : cpp_proj/fast
 
+arry_func.obj: arry_func.cpp.obj
+
+.PHONY : arry_func.obj
+
+# target to build an object file
+arry_func.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/arry_func.cpp.obj
+.PHONY : arry_func.cpp.obj
+
+arry_func.i: arry_func.cpp.i
+
+.PHONY : arry_func.i
+
+# target to preprocess a source file
+arry_func.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/arry_func.cpp.i
+.PHONY : arry_func.cpp.i
+
+arry_func.s: arry_func.cpp.s
+
+.PHONY : arry_func.s
+
+# target to generate assembly for a file
+arry_func.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/arry_func.cpp.s
+.PHONY : arry_func.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -177,6 +204,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... cpp_proj
+	@echo ... arry_func.obj
+	@echo ... arry_func.i
+	@echo ... arry_func.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

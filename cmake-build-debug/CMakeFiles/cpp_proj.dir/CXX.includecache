@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj/array_func.h
+time.h
+-
+random
+-
+
 H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj/main.cpp
 iostream
 -
@@ -19,4 +25,14 @@ cstring
 -
 map
 -
+time.h
+-
+iostream
+-
+iomanip
+-
+sstream
+-
+array_func.h
+H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj/array_func.h
 
