@@ -61,10 +61,10 @@ RM = C:\jetBrains\apps\CLion\ch-0\211.7442.42\bin\cmake\win\bin\cmake.exe -E rm 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj
+CMAKE_SOURCE_DIR = M:\Projects\cpp\GeekBrains\algo_course
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\cmake-build-debug
+CMAKE_BINARY_DIR = M:\Projects\cpp\GeekBrains\algo_course\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/cpp_proj.dir/depend.make
@@ -77,29 +77,29 @@ include CMakeFiles/cpp_proj.dir/flags.make
 
 CMakeFiles/cpp_proj.dir/main.cpp.obj: CMakeFiles/cpp_proj.dir/flags.make
 CMakeFiles/cpp_proj.dir/main.cpp.obj: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cpp_proj.dir/main.cpp.obj"
-	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\cpp_proj.dir\main.cpp.obj -c H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=M:\Projects\cpp\GeekBrains\algo_course\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cpp_proj.dir/main.cpp.obj"
+	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\cpp_proj.dir\main.cpp.obj -c M:\Projects\cpp\GeekBrains\algo_course\main.cpp
 
 CMakeFiles/cpp_proj.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpp_proj.dir/main.cpp.i"
-	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\main.cpp > CMakeFiles\cpp_proj.dir\main.cpp.i
+	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E M:\Projects\cpp\GeekBrains\algo_course\main.cpp > CMakeFiles\cpp_proj.dir\main.cpp.i
 
 CMakeFiles/cpp_proj.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpp_proj.dir/main.cpp.s"
-	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\main.cpp -o CMakeFiles\cpp_proj.dir\main.cpp.s
+	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S M:\Projects\cpp\GeekBrains\algo_course\main.cpp -o CMakeFiles\cpp_proj.dir\main.cpp.s
 
 CMakeFiles/cpp_proj.dir/arry_func.cpp.obj: CMakeFiles/cpp_proj.dir/flags.make
 CMakeFiles/cpp_proj.dir/arry_func.cpp.obj: ../arry_func.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/cpp_proj.dir/arry_func.cpp.obj"
-	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\cpp_proj.dir\arry_func.cpp.obj -c H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\arry_func.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=M:\Projects\cpp\GeekBrains\algo_course\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/cpp_proj.dir/arry_func.cpp.obj"
+	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\cpp_proj.dir\arry_func.cpp.obj -c M:\Projects\cpp\GeekBrains\algo_course\arry_func.cpp
 
 CMakeFiles/cpp_proj.dir/arry_func.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpp_proj.dir/arry_func.cpp.i"
-	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\arry_func.cpp > CMakeFiles\cpp_proj.dir\arry_func.cpp.i
+	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E M:\Projects\cpp\GeekBrains\algo_course\arry_func.cpp > CMakeFiles\cpp_proj.dir\arry_func.cpp.i
 
 CMakeFiles/cpp_proj.dir/arry_func.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpp_proj.dir/arry_func.cpp.s"
-	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\arry_func.cpp -o CMakeFiles\cpp_proj.dir\arry_func.cpp.s
+	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S M:\Projects\cpp\GeekBrains\algo_course\arry_func.cpp -o CMakeFiles\cpp_proj.dir\arry_func.cpp.s
 
 # Object files for target cpp_proj
 cpp_proj_OBJECTS = \
@@ -115,7 +115,7 @@ cpp_proj.exe: CMakeFiles/cpp_proj.dir/build.make
 cpp_proj.exe: CMakeFiles/cpp_proj.dir/linklibs.rsp
 cpp_proj.exe: CMakeFiles/cpp_proj.dir/objects1.rsp
 cpp_proj.exe: CMakeFiles/cpp_proj.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable cpp_proj.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=M:\Projects\cpp\GeekBrains\algo_course\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable cpp_proj.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\cpp_proj.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -128,6 +128,6 @@ CMakeFiles/cpp_proj.dir/clean:
 .PHONY : CMakeFiles/cpp_proj.dir/clean
 
 CMakeFiles/cpp_proj.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\cmake-build-debug H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\cmake-build-debug H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\cmake-build-debug\CMakeFiles\cpp_proj.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" M:\Projects\cpp\GeekBrains\algo_course M:\Projects\cpp\GeekBrains\algo_course M:\Projects\cpp\GeekBrains\algo_course\cmake-build-debug M:\Projects\cpp\GeekBrains\algo_course\cmake-build-debug M:\Projects\cpp\GeekBrains\algo_course\cmake-build-debug\CMakeFiles\cpp_proj.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/cpp_proj.dir/depend
 

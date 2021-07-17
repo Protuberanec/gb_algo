@@ -1,4 +1,4 @@
-# Install script for directory: H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj
+# Install script for directory: M:/Projects/cpp/GeekBrains/algo_course
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "M:/Projects/cpp/GeekBrains/algo_course/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -9,6 +9,48 @@
 #include <random>
 
 //#define REAL_UNIQUE
+template<class T>
+void Create1DArray(T* &ar, int size, bool fill_rand = true, bool unique = true) {
+    ar = new T [size];
+    memset(ar, 0x00, size * sizeof(T));
+
+    if (fill_rand != true) {
+        return;
+    }
+
+    T *array_unique_number;
+    if (unique == true) {
+        array_unique_number = new T[size];
+        memset(array_unique_number, 0x00, size * sizeof(T));
+    }
+
+    srand(time(NULL));
+
+    for (int j = 0; j < size; j++) {
+        T uniq_number = rand() % 999 + 1;   //exclude zero
+        //fill unique number
+        if (unique == false) {
+            ar[j] = uniq_number;
+            continue;
+        }
+
+        int i_u = 0;
+        for (; i_u < j; i_u++) {
+            while (array_unique_number[i_u] == uniq_number) {
+                uniq_number = rand() % (size*2);
+#ifdef  REAL_UNIQUE //else will appear duplicate
+                i_u = 0;    //for real unique number
+#endif
+            }
+        }
+        array_unique_number[i_u] = uniq_number;
+        ar[j] = uniq_number;
+    }
+    if (unique == true) {
+        delete[] array_unique_number;
+    }
+}
+
 
 template<class T>
 void Create2DArray(T** &ar, int col, int row, bool fill_rand = true) {
@@ -56,6 +98,13 @@ void Release2DArray(T** ar, int rows) {
 }
 
 template<class T>
+void array1D_Copy(T* ar_dest, T* ar_cp, int size) {
+    for (int i = 0; i < size; i++) {
+        ar_dest[i] = ar_cp[i];
+    }
+}
+
+template<class T>
 void Copy2DArray(T** ar_dest, T* ar_cp, int col, int row) {
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++) {
@@ -65,11 +114,98 @@ void Copy2DArray(T** ar_dest, T* ar_cp, int col, int row) {
 }
 
 template<class T>
-void FillRandom1DArray(T* arr, int len) {
-    srand(time(NULL));
-    for (int i = 0; i < len; i++) {
-        arr[i] = rand() % 100;
+bool is2DArraySorted(T *arr, int row_size, int col_size, bool ascending = true) {
+    int total_size = row_size*col_size - 1; //for optimize, that not multiply every cycle
+    if (ascending == true) {
+        for (int i = 0; i < total_size; i++) {
+            if (arr[i] > arr[i + 1]) {
+                return false;
+            }
+        }
     }
+    else if (ascending == false) {}
+
+    return true;
+}
+
+template<class T>
+bool is1DArraySorted(T *arr, int size, bool ascending = true) {
+    if (ascending == true) {
+        for (int i = 0; i < size - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
+                return false;
+            }
+        }
+    }
+    else if (ascending == false) {}
+
+    return true;
+}
+
+template<class T>
+void array1D_Print(T* arr, int size) {
+    for (int i = 0; i < size; i++) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
+template<class T>
+void array1D_FillRandom(T *ar, int size) {
+    srand(time(NULL));
+
+    for (int i = 0; i < size; i++) {
+        ar[i] = rand() % 100;
+    }
+}
+
+template<class T>
+bool array1D_compareAllNumbers(T* array0, T* array1, int size) {
+    for (int i = 0; i < size; i++) {
+        if (array0[i] != array1[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+template<class T>
+bool array1D_compareODDNumber(T* source, T* array, int size) {
+    for (int i = 0; i < size; i++) {
+        if (source[i] % 2) {
+            if (source[i] != array[i]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+template<class T>
+bool array1D_compareSortEvenNumber(T* source, int size, bool ascending = true) {
+    int index_prev = -1;
+    for (int i = 0; i < size; i++) {
+        if (source[i] % 2) {
+            continue;
+        }
+        if (index_prev == -1) {
+            index_prev = i;
+            continue;
+        }
+        if (source[index_prev] > source[i]) {
+            return false;
+        }
+        index_prev = i;
+    }
+    return true;
+}
+
+template<class T>
+void Swap(T& a, T& b) {
+//    a ^= b;
+//    b ^= a;
+//    a ^= b;
+    int temp = a;
+    a = b;
+    b = temp;
 }
 
 #endif //CPP_PROJ_ARRAY_FUNC_H

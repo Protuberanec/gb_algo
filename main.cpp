@@ -2,220 +2,309 @@
 #include <iostream>
 #include <limits>
 #include <assert.h>
-#include <assert.h>
 #include <cstring>
+#include <string>
 #include <map>
+#include <vector>
+#include <iterator>
+#include <algorithm>
 #include <time.h>
-#include <iostream>
-#include <iomanip>
-#include <sstream>
+#include <windows.h>
+#include <sysinfoapi.h>
+
 #include "array_func.h"
+#include "ConsoleWork.h"
+
+/*
+ * 1. Описать в коде улучшенный алгоритм быстрой сортировки
+ * 2. Сортировать в массиве целых положительных чисел только чётные числа, нечётные оставив на своих местах
+ * при помощи алгоритма блочной сортировки, то есть массив вида [0 2 8 3 4 6 5 9 8 2 7 3] превратить в [0 2 2 3 4 4 5 9 8 8 7 3]
+ */
+
 
 using namespace std;
-/*
- * 1. Реализовать пузырьковую сортировку двумерного массива например, массив 1,9,2 5,7,6 4,3,8 должен на выходе стать 1,2,3 4,5,6 7,8,9 (main.c)
- * 2. Описать подробную блок-схему алгоритма Трабба-Прадо-Кнута     (algo)
- *      2.1. - запросить у пользователя 11 чисел и записать их в последовательность П
- *      2.2. - инвертировать последовательность П
- *      2.3. - для каждого элемента последовательности П произвести вычисление по формуле sqrt(fabs(Х)) + 5 * pow(Х, 3) и если результат вычислений превышает 400 - проинформировать пользователя.
- * 3. Реализовать алгоритм Трабба-Прадо-Кнута в коде на языке С (main.c)
- */
 
-/*
- * 1. Реализовать пузырьковую сортировку двумерного массива например, массив 1,9,2 5,7,6 4,3,8 должен на выходе стать 1,2,3 4,5,6 7,8,9 (main.c)
- */
-void Swap(int& a, int& b) {
-    a ^= b;
-    b ^= a;
-    a ^= b;
-}
-
+//1. Описать в коде улучшенный алгоритм быстрой сортировки
 template<class T>
-bool is2DArraySorted(T *arr, int row_size, int col_size, bool ascending = true) {
-    int total_size = row_size*col_size - 1; //for optimize, that not multiply every cycle
-    if (ascending == true) {
-        for (int i = 0; i < total_size; i++) {
-            if (arr[i] > arr[i + 1]) {
-                return false;
-            }
-        }
-    }
-    else if (ascending == false) {}
-
-    return true;
-}
-
-template<class T>
-bool is2DArraySorted(T **arr, int row_size, int col_size, bool ascending = true) {
-    if (ascending == true) {
-        for (int i = 0; i < row_size; i++) {
-            if (is2DArraySorted(&arr[i][0], col_size, 1) == false) {
-                return false;
-            }
-            if (i >= row_size-1) {
-                return true;
-            }
-            if (arr[i][col_size-1] > arr[i+1][0]) {
-                return false;
-            }
-
-        }
-    }
-    else if (ascending == false) {}
-
-    return true;
-}
-
-template<class T>
-void SortBubble(T* arr, unsigned int col_size, unsigned int row_size) {
-    int total_size = col_size * row_size;
-    for (int i = 0; i < total_size; i++) {
-        for (int j = 0; j < total_size - 1 - i; j++) {
-            if (arr[j] > arr[j+1]) {
-                Swap(arr[j], arr[j + 1]);
-            }
-        }
-    }
-}
-
-/*
- *  сортировка реального двумерного динамического массива
- *  изврат ещё тот...
- */
-template<class T>
-void SortBubble(T** arr, unsigned int row_size, unsigned int col_size) {
-    int count_swap = row_size - 1;
-    while(count_swap) {
-        count_swap = row_size - 1;
-        for (int i1 = 0; i1 < row_size; i1++) {
-            SortBubble(&arr[i1][0], col_size, 1);
-            if (i1 >= row_size-1)
-                break;
-            if (arr[i1][col_size-1] > arr[i1+1][0]) {
-                Swap(arr[i1][col_size-1], arr[i1+1][0]);
-            }
-            else {
-                count_swap--;   //считаем кол-во перестановок из массива в массив
-            }
-
-        }
-    }
-    return;
-}
-
-void test_task1_SortBubble() {
-    {//test1 static array
-        int arr[3][3] = {{13,2,7},{8,6,9},{1,-1,3}};
-        SortBubble(&arr[0][0], 3, 3);
-        assert(is2DArraySorted(&arr[0][0], 3, 3) == true);
-    }
-    {   //test2 static array, random filled
-        int arr[5][5];
-        FillRandom1DArray(&arr[0][0], 25);
-        SortBubble(&arr[0][0], 3, 3);
-        assert(is2DArraySorted(&arr[0][0], 3, 3) == true);
-    }
-//dynamic arrays
-    {   //test2 dynamic array
-        int temp_arr[3][3] = {{3,2,7},{8,6,3},{1,-1,3}};
-        int **arr;
-        Create2DArray(arr, 3,3, false);
-        Copy2DArray(arr, &temp_arr[0][0], 3,3);
-
-        SortBubble(arr, 3, 3);
-        assert(is2DArraySorted(arr, 3, 3) == true);
-
-        Release2DArray(arr, 3);
-    }
-    {   //test2 dynamic array
-        int temp_arr[3][3] = {{9,8,7},{6,5,4},{3,2,1}};
-        int **arr;
-        Create2DArray(arr, 3,3, false);
-        Copy2DArray(arr, &temp_arr[0][0], 3,3);
-
-        SortBubble(arr, 3, 3);
-        assert(is2DArraySorted(arr, 3, 3) == true);
-
-        Release2DArray(arr, 3);
-    }
-
-    {   //test2 dynamic array
-        const int row = 3, col = 5;
-        int temp_arr[row][col] = {{9,8,7,-1,-2},{6,5,4,0,19},{3,2,1,99,90}};
-        int **arr;
-        Create2DArray(arr, col,row, false);
-        Copy2DArray(arr, &temp_arr[0][0], col,row);
-
-        SortBubble(arr, row, col);
-        assert(is2DArraySorted(arr, row, col) == true);
-
-        Release2DArray(arr, row);
-    }
-
-    {   //test2 dynamic array, random filled
-        const int row = 10, col = 10;
-        int **arr;
-        Create2DArray(arr, col, row, true);
-
-        SortBubble(arr, row, col);
-        assert(is2DArraySorted(arr, row, col) == true);
-        Release2DArray(arr, row);
-    }
-
-    cout << "Test bubble sort " << __func__ << " passed ok" << endl;
-}
-
-
-int GetNumber() {
-    int number;
-    cin >> number;
-    while (cin.fail()) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cin >> number;
-    }
-    return number;
-}
-
-/* 2. Описать подробную блок-схему алгоритма Трабба-Прадо-Кнута     (algo)
-*      2.1. - запросить у пользователя 11 чисел и записать их в последовательность П
-*      2.2. - инвертировать последовательность П
-*      2.3. - для каждого элемента последовательности П произвести вычисление по формуле sqrt(fabs(Х)) + 5 * pow(Х, 3) и если результат вычислений превышает 400 - проинформировать пользователя.
-* 3. Реализовать алгоритм Трабба-Прадо-Кнута в коде на языке С (main.c)
-*/
-#define VICE_VERSA //показывать числа ряда в обратном порядке
-void algo_TPK(int n = 11) {
-    if (n <= 0) {
+void QuickSort(T* ar, int size)
+{
+    if (size <= 1) {
         return;
     }
-    unsigned int enter_number = GetNumber();
+    int left = 0;
+    int right = size - 1;
+    int median = ar[size/2];
 
-#ifdef VICE_VERSA
-    --n;
-    algo_TPK(n);
-#endif
-    float res_calc = sqrt(fabs(enter_number))+ 5 * pow(enter_number,3);
-    cout    << "number = " << enter_number
-            << " inv = " << ~enter_number << "\t" << (int)(~enter_number)
-            << " sqrt(fabs(X) + 5 * pow(X,3) = " << res_calc << (res_calc > 400 ? "\tmore than 400" : "\tOK")
-            << endl;
-#ifndef VICE_VERSA
-    n--;
-    algo_TPK(n);    //show vice vers data
-#endif
+    do {
+        while (ar[left] < median) {
+            left++;
+        }
+        while(ar[right] > median) {
+            right--;
+        }
+        if (left <= right) {
+            Swap(ar[right], ar[left]);
+            left++;
+            right--;
+        }
+    }while (left <= right);
+
+    QuickSort(&ar[0], right+1);
+    QuickSort(&ar[left], size - left);
 }
 
+template<class T>
+inline int GetIndexMax(T* ar, int size) {
+    int index_max = 0;
+    for (int i = 1; i < size; i++) {
+        if (ar[index_max] < ar[i]) {
+            index_max = i;
+        }
+    }
+    return index_max;
+}
 
+template<class T>
+void Insertion_sort(T* ar, int size) {
+    for (int i = 0; i < size; i++) {
+        int index = GetIndexMax(&ar[0], size - i);
+        Swap(ar[index], ar[size - 1 - i]);
+    }
+}
+
+template<class T>
+void QuickSort_improved(T* ar, int size) {
+    if (size <= 20) {
+        Insertion_sort(ar, size);
+        return;
+    }
+    int left = 0;
+    int right = size - 1;
+    int median = ar[size/2];
+
+    do {
+        while (ar[left] < median) {
+            left++;
+        }
+        while(ar[right] > median) {
+            right--;
+        }
+        if (left <= right) {
+            Swap(ar[right], ar[left]);
+            left++;
+            right--;
+        }
+    }while (left <= right);
+
+    QuickSort(&ar[0], right+1);
+    QuickSort(&ar[left], size - left);
+}
+
+template<class T>
+pair<int,int> GetRangeNumber(T number) {
+    int temp = number / 10;
+    int left_side = temp*10;
+    int right_side = left_side + 10;
+
+    return make_pair(left_side, right_side);
+}
+
+void BucketSort(int* ar, int size) {
+    map<int /*range to*/, vector<int>/*elements in ranges*/> buckets;
+        //e.g. map[10] will contain elements from 0 to 9, map[20] will contain el from 10 to 19 etc
+        //for negative... -10 to -1 will look like map[-1], from -20 to -11 is map[-11]
+    for (int i = 0; i < size; i++) {
+        auto [left, right] = GetRangeNumber(ar[i]);
+        buckets[right].push_back(ar[i]);
+    }
+
+    auto bucket_data = buckets.begin(); //    map<int, list<int>>::iterator temp_iter = buckets.begin();, ругается на шаблоны... потом посмотреть...
+    while(bucket_data != buckets.end()) {
+        sort(bucket_data->second.begin(), bucket_data->second.end());
+        bucket_data++;
+    }
+    bucket_data = buckets.begin();
+    int i = 0;
+    while(bucket_data != buckets.end()) {
+        for (auto iter = bucket_data->second.begin(); iter != bucket_data->second.end(); iter++) {
+            ar[i++] = *iter;
+        }
+        bucket_data->second.clear();
+        buckets.erase(bucket_data);
+        bucket_data = buckets.begin();
+    }
+}
+
+// 2. Сортировать в массиве целых положительных чисел только чётные числа, нечётные оставив на своих местах
+//    при помощи алгоритма блочной сортировки, то есть массив вида [0 2 8 3 4 6 5 9 8 2 7 3] превратить в [0 2 2 3 4 4 5 9 8 8 7 3]
+
+void specific_BucketSort(int* ar, int size) {
+    map<int /*range to*/, vector<int>/*elements in ranges*/> buckets;
+    //e.g. map[10] will contain elements from 0 to 9, map[20] will contain el from 10 to 19 etc
+    //for negative... -10 to -1 will look like map[-1], from -20 to -11 is map[-11]
+    for (int i = 0; i < size; i++) {
+        auto [left, right] = GetRangeNumber(ar[i]);
+        buckets[right].push_back(ar[i]);
+    }
+
+    auto bucket_data = buckets.begin(); //    map<int, list<int>>::iterator temp_iter = buckets.begin();, ругается на шаблоны... потом посмотреть...
+    while(bucket_data != buckets.end()) {
+        sort(bucket_data->second.begin(), bucket_data->second.end());   //или это всё превратить в обычный массив а потом с помощью любой ранее реализованной сортировкой отсортировать
+        bucket_data++;
+    }
+    bucket_data = buckets.begin();
+    int i = 0;
+    while(bucket_data != buckets.end() && i < size) {
+        for (auto iter = bucket_data->second.begin(); iter != bucket_data->second.end(); iter++, i++) {
+            while (*iter % 2) {
+                if (iter == bucket_data->second.end()) {
+                    break;
+                }
+                iter++;
+            }
+            if (iter == bucket_data->second.end()) {
+                break;
+            }
+
+            while (ar[i] % 2) { //check odd
+                i++;
+                if (i > size - 1) {
+                    break;
+                }
+            }
+            if (i > size)
+                break;
+            ar[i] = *iter;
+        }
+        bucket_data->second.clear();
+        buckets.erase(bucket_data);
+        bucket_data = buckets.begin();
+    }
+}
+
+void test_BucketSort_forTASK2()
+{
+    {   //test array    [0 2 8 3 4 6 5 9 8 2 7 3]
+        //result        [0 2 2 3 4 6 5 9 8 8 7 3]
+        const int SIZE = 20;
+        int source[SIZE] =      {56, 52, 68, 45, 28, 38, 50, 20, 00, 14, 12, 50, 36, 85, 33, 92, 11, 05, 83, 75};    //
+        int result_sort[SIZE] = {00, 12, 14, 45, 20, 28, 36, 38, 50, 50, 52, 56, 68, 85, 33, 92, 11, 05, 83, 75};
+
+        specific_BucketSort(source, SIZE);
+
+        assert(array1D_compareAllNumbers(&source[0], &result_sort[0], SIZE) == true);
+        assert(array1D_compareSortEvenNumber(&source[0], SIZE) == true);
+        assert(array1D_compareODDNumber(&source[0], &result_sort[0], SIZE) == true);
+    }
+
+    {   //test array    [0 2 8 3 4 6 5 9 8 2 7 3]
+        //result        [0 2 2 3 4 6 5 9 8 8 7 3]
+        const int SIZE = 12;
+        int source[SIZE] =      {0, 2, 8, 3, 4, 6, 5, 9, 8, 2, 7, 3};    //
+        int result_sort[SIZE] = {0, 2, 2, 3, 4, 6, 5, 9, 8, 8, 7, 3};
+
+        specific_BucketSort(source, SIZE);
+
+        assert(array1D_compareAllNumbers(&source[0], &result_sort[0], SIZE) == true);
+        assert(array1D_compareSortEvenNumber(&source[0], SIZE) == true);
+        assert(array1D_compareODDNumber(&source[0], &result_sort[0], SIZE) == true);
+    }
+    {   //test array    [0 2 8 3 4 6 5 9 0 2 7 3]
+        //result        [0 0 2 2 3 4 6 5 9 8 7 3]
+        const int SIZE = 12;
+        int source[SIZE] =      {0, 2, 8, 3, 4, 6, 5, 9, 0, 2, 7, 3};    //
+        int result_sort[SIZE] = {0, 0, 2, 3, 2, 4, 5, 9, 6, 8, 7, 3};
+
+        specific_BucketSort(source, SIZE);
+
+        assert(array1D_compareAllNumbers(&source[0], &result_sort[0], SIZE) == true);
+        assert(array1D_compareSortEvenNumber(&source[0], SIZE) == true);
+        assert(array1D_compareODDNumber(&source[0], &result_sort[0], SIZE) == true);
+    }
+    {  //randow array
+        const int SIZE = 20;
+        int source[SIZE];
+        array1D_FillRandom(&source[0], SIZE);
+
+        int result_sort[SIZE];
+        array1D_Copy(result_sort, source, SIZE);
+
+        specific_BucketSort(result_sort, SIZE);
+
+        assert(array1D_compareODDNumber(&source[0], &result_sort[0], SIZE) == true);
+        assert(array1D_compareSortEvenNumber(&result_sort[0], SIZE) == true);
+    }
+
+    cout << "\tTASK2 passed OK" << endl;
+}
+
+void test_sorts(void (*TypeSort)(int*, int), const string& name_sort, bool test_speed = false)
+{
+    {   //test positive numbers
+        int ar[10] = {1,5,2,3,8,10,0,7,4,1};
+        TypeSort(ar, 10);
+        assert(is1DArraySorted(ar, 10) == true);
+    }
+    {   //test positive numbers large array, odd
+        int size = 753;
+        int *ar;
+        Create1DArray(ar, size);
+
+        TypeSort(ar, size);
+        assert(is1DArraySorted(ar, size) == true);
+
+        delete [] ar;
+    }
+    {   //test positive numbers large array, even
+        int size = 968;
+        int *ar;
+        Create1DArray(ar, size);
+
+        TypeSort(ar, size);
+        assert(is1DArraySorted(ar, size) == true);
+
+        delete [] ar;
+    }
+    {   //test negative array
+        int ar[10] = {-1,5,-6,3,-8,10,0,23,4,-9};
+        TypeSort(ar, 10);
+        assert(is1DArraySorted(ar, 10) == true);
+    }
+    {   //test have duplicates
+        int ar[10] = {5,5,-6,3,-8,-8,23,23,4,4};
+        TypeSort(ar, 10);
+        assert(is1DArraySorted(ar, 10) == true);
+    }
+    if (test_speed == true)
+    {   //test for time sorts
+        int size = 1000000;
+        int *ar;
+        Create1DArray(ar, size, true, false);
+        uint64_t time_elapsed = GetTickCount();
+        TypeSort(ar, size);
+        time_elapsed = GetTickCount() - time_elapsed;
+        cout << "\ttime of "<< name_sort <<" is " << time_elapsed << " parrots for size array = " << size << endl;
+        assert(is1DArraySorted(ar, size) == true);
+
+        delete [] ar;
+    }
+
+    cout << "\ttest " << name_sort << " passed OK" << endl;
+}
 
 int main(int argc, char** argv) {
+    cout << "only for me, test quick sort and insertion sort" << endl;
+    test_sorts(QuickSort, "quick sort", true);
+    test_sorts(Insertion_sort, "insertion sort", false);
 
+    cout << "TASK2, quick sort improved" << endl;
+    test_sorts(QuickSort_improved, "improved quick sort", true);
 
-    test_task1_SortBubble();        //task1
+    cout << "real bucket sort" << endl;
+    test_sorts(BucketSort, "bucket sort", true);
 
-    cout << "enter 11 numbers : " << endl;
-    algo_TPK();
-
-
+    cout << "TASK2 specific bucket sort" << endl;
+    test_BucketSort_forTASK2();
 
     return 0;
 }

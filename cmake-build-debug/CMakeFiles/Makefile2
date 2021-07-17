@@ -62,10 +62,10 @@ RM = C:\jetBrains\apps\CLion\ch-0\211.7442.42\bin\cmake\win\bin\cmake.exe -E rm 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj
+CMAKE_SOURCE_DIR = M:\Projects\cpp\GeekBrains\algo_course
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\cmake-build-debug
+CMAKE_BINARY_DIR = M:\Projects\cpp\GeekBrains\algo_course\cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -92,14 +92,14 @@ clean: CMakeFiles/cpp_proj.dir/clean
 CMakeFiles/cpp_proj.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\cmake-build-debug\CMakeFiles --progress-num=1,2,3 "Built target cpp_proj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=M:\Projects\cpp\GeekBrains\algo_course\cmake-build-debug\CMakeFiles --progress-num=1,2,3 "Built target cpp_proj"
 .PHONY : CMakeFiles/cpp_proj.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/cpp_proj.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\cmake-build-debug\CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start M:\Projects\cpp\GeekBrains\algo_course\cmake-build-debug\CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/cpp_proj.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start H:\YandexDisk\study\geekbrains\HW_Algo\cpp_proj\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start M:\Projects\cpp\GeekBrains\algo_course\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/cpp_proj.dir/rule
 
 # Convenience name for target.

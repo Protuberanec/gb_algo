@@ -3,6 +3,7 @@
 
 CMakeFiles/cpp_proj.dir/arry_func.cpp.obj: ../arry_func.cpp
 
+CMakeFiles/cpp_proj.dir/main.cpp.obj: ../ConsoleWork.h
 CMakeFiles/cpp_proj.dir/main.cpp.obj: ../array_func.h
 CMakeFiles/cpp_proj.dir/main.cpp.obj: ../main.cpp
 

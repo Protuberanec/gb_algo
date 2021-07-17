@@ -6,33 +6,45 @@
 
 #IncludeRegexTransform: 
 
-H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj/array_func.h
+M:/Projects/cpp/GeekBrains/algo_course/ConsoleWork.h
+iostream
+-
+stdlib.h
+-
+
+M:/Projects/cpp/GeekBrains/algo_course/array_func.h
 time.h
 -
 random
 -
 
-H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj/main.cpp
+M:/Projects/cpp/GeekBrains/algo_course/main.cpp
 iostream
 -
 limits
 -
 assert.h
 -
-assert.h
--
 cstring
+-
+string
 -
 map
 -
+vector
+-
+iterator
+-
+algorithm
+-
 time.h
 -
-iostream
+windows.h
 -
-iomanip
--
-sstream
+sysinfoapi.h
 -
 array_func.h
-H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj/array_func.h
+M:/Projects/cpp/GeekBrains/algo_course/array_func.h
+ConsoleWork.h
+M:/Projects/cpp/GeekBrains/algo_course/ConsoleWork.h
 

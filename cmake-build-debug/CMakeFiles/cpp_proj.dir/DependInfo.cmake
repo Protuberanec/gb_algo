@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj/arry_func.cpp" "H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj/cmake-build-debug/CMakeFiles/cpp_proj.dir/arry_func.cpp.obj"
-  "H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj/main.cpp" "H:/YandexDisk/study/geekbrains/HW_Algo/cpp_proj/cmake-build-debug/CMakeFiles/cpp_proj.dir/main.cpp.obj"
+  "M:/Projects/cpp/GeekBrains/algo_course/arry_func.cpp" "M:/Projects/cpp/GeekBrains/algo_course/cmake-build-debug/CMakeFiles/cpp_proj.dir/arry_func.cpp.obj"
+  "M:/Projects/cpp/GeekBrains/algo_course/main.cpp" "M:/Projects/cpp/GeekBrains/algo_course/cmake-build-debug/CMakeFiles/cpp_proj.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
