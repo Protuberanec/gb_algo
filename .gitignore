@@ -4,3 +4,5 @@
 *log.*
 *.a
 *.obj
+*.make
+cmake-build-debug/

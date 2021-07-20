@@ -51,7 +51,6 @@ void Create1DArray(T* &ar, int size, bool fill_rand = true, bool unique = true) 
     }
 }
 
-
 template<class T>
 void Create2DArray(T** &ar, int col, int row, bool fill_rand = true) {
     ar = new T *[row];
@@ -129,7 +128,7 @@ bool is2DArraySorted(T *arr, int row_size, int col_size, bool ascending = true) 
 }
 
 template<class T>
-bool is1DArraySorted(T *arr, int size, bool ascending = true) {
+bool array1D_isSorted(T *arr, int size, bool ascending = true) {
     if (ascending == true) {
         for (int i = 0; i < size - 1; i++) {
             if (arr[i] > arr[i + 1]) {
@@ -206,6 +205,17 @@ void Swap(T& a, T& b) {
     int temp = a;
     a = b;
     b = temp;
+}
+
+template<class T>
+inline int array1D_GetIndexMax(T* ar, int size) {
+    int index_max = 0;
+    for (int i = 1; i < size; i++) {
+        if (ar[index_max] < ar[i]) {
+            index_max = i;
+        }
+    }
+    return index_max;
 }
 
 #endif //CPP_PROJ_ARRAY_FUNC_H
