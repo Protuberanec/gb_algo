@@ -195,6 +195,60 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+sorts.obj: sorts.cpp.obj
+
+.PHONY : sorts.obj
+
+# target to build an object file
+sorts.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/sorts.cpp.obj
+.PHONY : sorts.cpp.obj
+
+sorts.i: sorts.cpp.i
+
+.PHONY : sorts.i
+
+# target to preprocess a source file
+sorts.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/sorts.cpp.i
+.PHONY : sorts.cpp.i
+
+sorts.s: sorts.cpp.s
+
+.PHONY : sorts.s
+
+# target to generate assembly for a file
+sorts.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/sorts.cpp.s
+.PHONY : sorts.cpp.s
+
+test_sorts.obj: test_sorts.cpp.obj
+
+.PHONY : test_sorts.obj
+
+# target to build an object file
+test_sorts.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/test_sorts.cpp.obj
+.PHONY : test_sorts.cpp.obj
+
+test_sorts.i: test_sorts.cpp.i
+
+.PHONY : test_sorts.i
+
+# target to preprocess a source file
+test_sorts.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/test_sorts.cpp.i
+.PHONY : test_sorts.cpp.i
+
+test_sorts.s: test_sorts.cpp.s
+
+.PHONY : test_sorts.s
+
+# target to generate assembly for a file
+test_sorts.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/test_sorts.cpp.s
+.PHONY : test_sorts.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -210,6 +264,12 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... sorts.obj
+	@echo ... sorts.i
+	@echo ... sorts.s
+	@echo ... test_sorts.obj
+	@echo ... test_sorts.i
+	@echo ... test_sorts.s
 .PHONY : help
 
 

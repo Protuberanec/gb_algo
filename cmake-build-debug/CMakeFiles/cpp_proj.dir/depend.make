@@ -6,4 +6,15 @@ CMakeFiles/cpp_proj.dir/arry_func.cpp.obj: ../arry_func.cpp
 CMakeFiles/cpp_proj.dir/main.cpp.obj: ../ConsoleWork.h
 CMakeFiles/cpp_proj.dir/main.cpp.obj: ../array_func.h
 CMakeFiles/cpp_proj.dir/main.cpp.obj: ../main.cpp
+CMakeFiles/cpp_proj.dir/main.cpp.obj: ../sorts.h
+CMakeFiles/cpp_proj.dir/main.cpp.obj: ../test_sorts.h
+
+CMakeFiles/cpp_proj.dir/sorts.cpp.obj: ../array_func.h
+CMakeFiles/cpp_proj.dir/sorts.cpp.obj: ../sorts.cpp
+CMakeFiles/cpp_proj.dir/sorts.cpp.obj: ../sorts.h
+
+CMakeFiles/cpp_proj.dir/test_sorts.cpp.obj: ../array_func.h
+CMakeFiles/cpp_proj.dir/test_sorts.cpp.obj: ../sorts.h
+CMakeFiles/cpp_proj.dir/test_sorts.cpp.obj: ../test_sorts.cpp
+CMakeFiles/cpp_proj.dir/test_sorts.cpp.obj: ../test_sorts.h
 

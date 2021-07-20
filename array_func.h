@@ -129,7 +129,7 @@ bool is2DArraySorted(T *arr, int row_size, int col_size, bool ascending = true) 
 }
 
 template<class T>
-bool is1DArraySorted(T *arr, int size, bool ascending = true) {
+bool array1D_isSorted(T *arr, int size, bool ascending = true) {
     if (ascending == true) {
         for (int i = 0; i < size - 1; i++) {
             if (arr[i] > arr[i + 1]) {

@@ -13,6 +13,7 @@
 #include <sysinfoapi.h>
 
 #include "array_func.h"
+#include "test_sorts.h"
 #include "ConsoleWork.h"
 
 /*
@@ -238,60 +239,6 @@ void test_BucketSort_forTASK2()
     cout << "\tTASK2 passed OK" << endl;
 }
 
-void test_sorts(void (*TypeSort)(int*, int), const string& name_sort, bool test_speed = false)
-{
-    {   //test positive numbers
-        int ar[10] = {1,5,2,3,8,10,0,7,4,1};
-        TypeSort(ar, 10);
-        assert(is1DArraySorted(ar, 10) == true);
-    }
-    {   //test positive numbers large array, odd
-        int size = 753;
-        int *ar;
-        Create1DArray(ar, size);
-
-        TypeSort(ar, size);
-        assert(is1DArraySorted(ar, size) == true);
-
-        delete [] ar;
-    }
-    {   //test positive numbers large array, even
-        int size = 968;
-        int *ar;
-        Create1DArray(ar, size);
-
-        TypeSort(ar, size);
-        assert(is1DArraySorted(ar, size) == true);
-
-        delete [] ar;
-    }
-    {   //test negative array
-        int ar[10] = {-1,5,-6,3,-8,10,0,23,4,-9};
-        TypeSort(ar, 10);
-        assert(is1DArraySorted(ar, 10) == true);
-    }
-    {   //test have duplicates
-        int ar[10] = {5,5,-6,3,-8,-8,23,23,4,4};
-        TypeSort(ar, 10);
-        assert(is1DArraySorted(ar, 10) == true);
-    }
-    if (test_speed == true)
-    {   //test for time sorts
-        int size = 1000000;
-        int *ar;
-        Create1DArray(ar, size, true, false);
-        uint64_t time_elapsed = GetTickCount();
-        TypeSort(ar, size);
-        time_elapsed = GetTickCount() - time_elapsed;
-        cout << "\ttime of "<< name_sort <<" is " << time_elapsed << " parrots for size array = " << size << endl;
-        assert(is1DArraySorted(ar, size) == true);
-
-        delete [] ar;
-    }
-
-    cout << "\ttest " << name_sort << " passed OK" << endl;
-}
-
 int main(int argc, char** argv) {
     cout << "only for me, test quick sort and insertion sort" << endl;
     test_sorts(QuickSort, "quick sort", true);
@@ -305,6 +252,8 @@ int main(int argc, char** argv) {
 
     cout << "TASK2 specific bucket sort" << endl;
     test_BucketSort_forTASK2();
+
+    test_mergeSort();
 
     return 0;
 }
