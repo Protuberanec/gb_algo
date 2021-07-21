@@ -143,7 +143,10 @@ bool is1DArraySorted(T *arr, int size, bool ascending = true) {
 }
 
 template<class T>
-void array1D_Print(T* arr, int size) {
+void array1D_Print(T* arr, int size, const char* info = nullptr) {
+    if (info != nullptr) {
+        std::cout << info << " : ";
+    }
     for (int i = 0; i < size; i++) {
         std::cout << arr[i] << " ";
     }
