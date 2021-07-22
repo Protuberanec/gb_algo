@@ -12,10 +12,11 @@
 #include <random>
 
 enum PRIORITY {
-    NO = -1,
-    HIGH = 0,
+    NO = 0,
+    HIGH = 1,
     MEDIUM = 10,
     LOW = 20,
+    LOWER = (unsigned int)-1,
 
 };
 
@@ -24,7 +25,7 @@ private :
     int *data;
     size_t size;
 public:
-    DATA& operator=(const DATA& data);
+    DATA& operator=(const DATA& data_);
 
     DATA();
     DATA(size_t, int*);
@@ -32,26 +33,31 @@ public:
 
     ~DATA();
 
+    int getSize() const {
+        return size;
+    }
     void fillRandom(size_t size_);
     size_t ShowData();
+    int* GetData(int& size_) {
+        size_ = size;
+        return data;
+    }
+    //quite strange don't work operator=()...
+    void CopyData(DATA *data_);
 
 };
 class NODE {
 private :
     int priority;
-
-    DATA *data;
     NODE *next;
     NODE *prev; //only for dequeue
 
+    DATA *data_node;
+
 public:
-    NODE& operator=(const NODE& new_node) {
-        if (data != nullptr) {
-            delete [] data;
-            data = nullptr;
-        }
-        return *new NODE(new_node);
-    }
+    int getDataNode(DATA* data_);
+    int getPriority() const;
+
     NODE();
     NODE(const NODE&);
     NODE(const DATA& data_);
@@ -65,22 +71,30 @@ public:
 
     void setData(const DATA *data_);
     void setPriority(int priority);
+
+
+    void ReleaseNode(int node);    //important!!! delete any relations with next elements, otherwise all elements \
+                                    // will delete while next will not equal nullptr
+                                    //algorithm is easy, need remove relations with next elements, after call delete
 };
 
 class QUEUE {
 private :
     NODE *HEAD;
     NODE *TAIL;
+    int amountElements;
 
 public:
     QUEUE();
     ~QUEUE();
 
     int push(const DATA* data, int prior_);
-    int pop(const DATA* data);
+    int pop(DATA* data);  //last insterted
+    int pop_by_prior(DATA* data); //with highenest priority
     int peek(const DATA* data);
 
     int ShowAllElements_non_rec();
+    int getAmountElements();
     int ShowAllElements_rec();
 };
 

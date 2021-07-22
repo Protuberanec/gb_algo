@@ -17,6 +17,7 @@ DATA::DATA() {
     size = 0;
     data = nullptr;
 }
+
 DATA::DATA(size_t size_, int *data_) {
     size = size_;
     data = new int [size_];
@@ -54,7 +55,7 @@ void DATA::fillRandom(size_t size_) {
 
 size_t DATA::ShowData() {
     if (size == 0) {
-        std::cout << "no data" << std::endl;
+        std::cout << "no data_node" << std::endl;
         return 0;
     }
     for (int i = 0; i < size; i++) {
@@ -65,29 +66,49 @@ size_t DATA::ShowData() {
     return size;
 }
 
+void DATA::CopyData(DATA *data_) {
+    if (!size) {
+        if (data_ != nullptr) {
+            data_->size = 0;
+        }
+        return;
+    }
+
+    data_->size = size;
+    if (data_->data) {
+        delete [] data_->data;
+    }
+    data_->data = new int [size];
+    for (int i = 0; i < size; i++) {
+        data_->data[i] = data[i];
+    }
+
+}
+
 NODE::NODE() {
     priority = PRIORITY::NO;
-    data = nullptr;
+    data_node = nullptr;
     next = nullptr;
     prev = nullptr;
 }
 
 NODE::~NODE() {
-    if (data != nullptr)
-        delete [] data;
+    if (data_node != nullptr)
+        delete data_node;
+
     if (next != nullptr)
         delete next;    //delete all elements
 }
 
 NODE::NODE(const DATA &data_) {
-    data = new DATA(data_);  //
+    data_node = new DATA(data_);  //
     next = nullptr;
     prev = nullptr;
     priority = PRIORITY::NO;
 }
 
 size_t NODE::ShowNodeData() {
-    return data->ShowData();
+    return data_node->ShowData();
 }
 
 NODE *NODE::getNext() const {
@@ -107,7 +128,7 @@ void NODE::setPrev(NODE *prev) {
 }
 
 NODE::NODE(const DATA &data_, int prior) {
-    data = new DATA(data_);  //
+    data_node = new DATA(data_);  //
     next = nullptr;
     prev = nullptr;
 }
@@ -117,20 +138,31 @@ void NODE::setPriority(int priority) {
 }
 
 void NODE::setData(const DATA *data_) {
-    if (data != nullptr) {
-        delete data;
+    if (data_node != nullptr) {
+        delete data_node;
     }
-    data = new DATA(*data_);
+    data_node = new DATA(*data_);
 }
 
 NODE::NODE(const NODE &) {
 
 }
 
+int NODE::getPriority() const {
+    return priority;
+}
+
+int NODE::getDataNode(DATA* data_) {
+    data_node->CopyData(data_);
+    return 0;
+}
+
+
 QUEUE::QUEUE() {
                         //at first time HEAD will empty
     HEAD = new NODE();  //last element always will empty!!!
     TAIL = HEAD;
+    amountElements = 0;
 }
 
 QUEUE::~QUEUE() {
@@ -138,6 +170,7 @@ QUEUE::~QUEUE() {
 }
 
 int QUEUE::push(const DATA *data, int prior_) {
+    amountElements++;
     TAIL->setData(data);
     TAIL->setPriority(prior_);
 
@@ -152,10 +185,75 @@ int QUEUE::push(const DATA *data, int prior_) {
 int QUEUE::ShowAllElements_non_rec() {
     NODE *temp_node = HEAD;
 
+    int current_num = 0;
     while(temp_node->getNext() != nullptr) {
+        std::cout << current_num++ << ", " << temp_node->getPriority() << " : ";
         temp_node->ShowNodeData();
         temp_node = temp_node->getNext();
     }
 
     return 0;
+}
+/*
+ * description  :   return elements with maxima of priority,
+*                   !!!important then prior value is lower, then priority is highest
+ *                   1 - high prior
+ *                   1000000 - low prior
+ */
+int QUEUE::pop_by_prior(DATA *data) {
+    if (HEAD->getNext() == nullptr) {
+        return 0;
+    }
+
+    amountElements--;
+
+    unsigned int max_prior = PRIORITY::LOWER;
+    NODE *need_node;
+    NODE *temp_node = HEAD;
+    while (temp_node->getNext() != nullptr) {
+        if (temp_node->getPriority() < max_prior) {
+            need_node = temp_node;
+            max_prior = temp_node->getPriority();
+            if (max_prior == PRIORITY::HIGH) {
+                //the element was found
+                temp_node->getDataNode(data);    //get data of node
+                //remove element reassign relations
+                if (need_node->getPrev() != NULL) {
+                    temp_node->getPrev()->setNext(temp_node->getNext());
+                    temp_node->getNext()->setPrev(temp_node->getPrev());
+                }
+                else {
+                    HEAD = need_node->getNext();
+                    HEAD->setPrev(nullptr);
+                }
+                //delete element... remember!!! need remove only next relation
+                temp_node->setNext(nullptr);
+                delete temp_node;
+                return PRIORITY::HIGH;
+            }
+        }
+        temp_node = temp_node->getNext();
+    }
+
+    //the element was found
+    need_node->getDataNode(data);    //get data of node
+    //remove element reassign relations
+    if (need_node->getPrev() != NULL) {
+        need_node->getPrev()->setNext(need_node->getNext());
+        need_node->getNext()->setPrev(need_node->getPrev());
+    }
+    else {
+        HEAD = need_node->getNext();
+        HEAD->setPrev(nullptr);
+    }
+
+    //delete element... remember!!! need remove only next relation
+    need_node->setNext(nullptr);
+    delete need_node;
+
+    return max_prior;
+}
+
+int QUEUE::getAmountElements() {
+    return amountElements;
 }

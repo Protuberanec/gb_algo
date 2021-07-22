@@ -50,8 +50,6 @@ void Create1DArray(T* &ar, int size, bool fill_rand = true, bool unique = true) 
         delete[] array_unique_number;
     }
 }
-
-
 template<class T>
 void Create2DArray(T** &ar, int col, int row, bool fill_rand = true) {
     ar = new T *[row];
@@ -88,7 +86,6 @@ void Create2DArray(T** &ar, int col, int row, bool fill_rand = true) {
         delete [] temp_ar;
     }
 }
-
 template<class T>
 void Release2DArray(T** ar, int rows) {
     for (int i = 0; i < rows; i++) {
@@ -96,14 +93,12 @@ void Release2DArray(T** ar, int rows) {
     }
     delete [] ar;
 }
-
 template<class T>
 void array1D_Copy(T* ar_dest, T* ar_cp, int size) {
     for (int i = 0; i < size; i++) {
         ar_dest[i] = ar_cp[i];
     }
 }
-
 template<class T>
 void Copy2DArray(T** ar_dest, T* ar_cp, int col, int row) {
     for (int i = 0; i < row; i++) {
@@ -112,7 +107,6 @@ void Copy2DArray(T** ar_dest, T* ar_cp, int col, int row) {
         }
     }
 }
-
 template<class T>
 bool is2DArraySorted(T *arr, int row_size, int col_size, bool ascending = true) {
     int total_size = row_size*col_size - 1; //for optimize, that not multiply every cycle
@@ -127,9 +121,8 @@ bool is2DArraySorted(T *arr, int row_size, int col_size, bool ascending = true) 
 
     return true;
 }
-
 template<class T>
-bool is1DArraySorted(T *arr, int size, bool ascending = true) {
+bool array1D_isSorted(T *arr, int size, bool ascending = true) {
     if (ascending == true) {
         for (int i = 0; i < size - 1; i++) {
             if (arr[i] > arr[i + 1]) {
@@ -137,11 +130,16 @@ bool is1DArraySorted(T *arr, int size, bool ascending = true) {
             }
         }
     }
-    else if (ascending == false) {}
+    else if (ascending == false) {
+        for (int i = 0; i < size - 1; i++) {
+            if (arr[i] < arr[i + 1]) {
+                return false;
+            }
+        }
+    }
 
     return true;
 }
-
 template<class T>
 void array1D_Print(T* arr, int size, const char* info = nullptr) {
     if (info != nullptr) {
@@ -152,7 +150,6 @@ void array1D_Print(T* arr, int size, const char* info = nullptr) {
     }
     std::cout << std::endl;
 }
-
 template<class T>
 void array1D_FillRandom(T *ar, int size) {
     srand(time(NULL));
@@ -161,7 +158,6 @@ void array1D_FillRandom(T *ar, int size) {
         ar[i] = rand() % 100;
     }
 }
-
 template<class T>
 bool array1D_compareAllNumbers(T* array0, T* array1, int size) {
     for (int i = 0; i < size; i++) {
@@ -200,7 +196,27 @@ bool array1D_compareSortEvenNumber(T* source, int size, bool ascending = true) {
     }
     return true;
 }
+template<class T>
+int array1D_GetIndexMax(T* ar, int size) {
+    int ind_max = 0;
+    for (int i = 1; i < size; i++) {
+        if (ar[ind_max] < ar[i]) {
+            ind_max = i;
+        }
+    }
+    return ind_max;
+}
 
+template<class T>
+int array1D_GetIndexMin(T* ar, int size) {
+    int ind_min = 0;
+    for (int i = 1; i < size; i++) {
+        if (ar[ind_min] > ar[i]) {
+            ind_min= i;
+        }
+    }
+    return ind_min;
+}
 template<class T>
 void Swap(T& a, T& b) {
 //    a ^= b;
@@ -210,5 +226,15 @@ void Swap(T& a, T& b) {
     a = b;
     b = temp;
 }
+
+template<class T>
+void array1D_InsertionSort(T* ar, int size) {
+    int ind_max = 0;
+    for (int i = 0; i < size; i++) {
+        ind_max = array1D_GetIndexMin(&ar[i], size - i) + i;
+        Swap(ar[i], ar[ind_max]);
+    }
+}
+
 
 #endif //CPP_PROJ_ARRAY_FUNC_H
