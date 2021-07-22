@@ -6,6 +6,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "M:/Projects/cpp/GeekBrains/algo_course/arry_func.cpp" "M:/Projects/cpp/GeekBrains/algo_course/cmake-build-debug/CMakeFiles/cpp_proj.dir/arry_func.cpp.obj"
   "M:/Projects/cpp/GeekBrains/algo_course/main.cpp" "M:/Projects/cpp/GeekBrains/algo_course/cmake-build-debug/CMakeFiles/cpp_proj.dir/main.cpp.obj"
+  "M:/Projects/cpp/GeekBrains/algo_course/queue.cpp" "M:/Projects/cpp/GeekBrains/algo_course/cmake-build-debug/CMakeFiles/cpp_proj.dir/queue.cpp.obj"
+  "M:/Projects/cpp/GeekBrains/algo_course/test_queue.cpp" "M:/Projects/cpp/GeekBrains/algo_course/cmake-build-debug/CMakeFiles/cpp_proj.dir/test_queue.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

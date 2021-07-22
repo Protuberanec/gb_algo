@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/cpp_proj.dir/arry_func.cpp.obj"
   "CMakeFiles/cpp_proj.dir/main.cpp.obj"
+  "CMakeFiles/cpp_proj.dir/queue.cpp.obj"
+  "CMakeFiles/cpp_proj.dir/test_queue.cpp.obj"
   "cpp_proj.exe"
   "cpp_proj.exe.manifest"
   "cpp_proj.pdb"

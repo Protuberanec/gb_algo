@@ -6,4 +6,14 @@ CMakeFiles/cpp_proj.dir/arry_func.cpp.obj: ../arry_func.cpp
 CMakeFiles/cpp_proj.dir/main.cpp.obj: ../ConsoleWork.h
 CMakeFiles/cpp_proj.dir/main.cpp.obj: ../array_func.h
 CMakeFiles/cpp_proj.dir/main.cpp.obj: ../main.cpp
+CMakeFiles/cpp_proj.dir/main.cpp.obj: ../queue.h
+CMakeFiles/cpp_proj.dir/main.cpp.obj: ../test_queue.h
+
+CMakeFiles/cpp_proj.dir/queue.cpp.obj: ../queue.cpp
+CMakeFiles/cpp_proj.dir/queue.cpp.obj: ../queue.h
+
+CMakeFiles/cpp_proj.dir/test_queue.cpp.obj: ../array_func.h
+CMakeFiles/cpp_proj.dir/test_queue.cpp.obj: ../queue.h
+CMakeFiles/cpp_proj.dir/test_queue.cpp.obj: ../test_queue.cpp
+CMakeFiles/cpp_proj.dir/test_queue.cpp.obj: ../test_queue.h
 

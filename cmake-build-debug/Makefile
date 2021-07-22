@@ -57,10 +57,10 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = C:\jetBrains\apps\CLion\ch-0\211.7442.42\bin\cmake\win\bin\cmake.exe
+CMAKE_COMMAND = C:\jetBrains\apps\CLion\ch-0\211.7628.27\bin\cmake\win\bin\cmake.exe
 
 # The command to remove a file.
-RM = C:\jetBrains\apps\CLion\ch-0\211.7442.42\bin\cmake\win\bin\cmake.exe -E rm -f
+RM = C:\jetBrains\apps\CLion\ch-0\211.7628.27\bin\cmake\win\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -77,7 +77,7 @@ CMAKE_BINARY_DIR = M:\Projects\cpp\GeekBrains\algo_course\cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	C:\jetBrains\apps\CLion\ch-0\211.7442.42\bin\cmake\win\bin\cmake.exe -E echo "No interactive CMake dialog available."
+	C:\jetBrains\apps\CLion\ch-0\211.7628.27\bin\cmake\win\bin\cmake.exe -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -88,7 +88,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	C:\jetBrains\apps\CLion\ch-0\211.7442.42\bin\cmake\win\bin\cmake.exe --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	C:\jetBrains\apps\CLion\ch-0\211.7628.27\bin\cmake\win\bin\cmake.exe --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -195,6 +195,60 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+queue.obj: queue.cpp.obj
+
+.PHONY : queue.obj
+
+# target to build an object file
+queue.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/queue.cpp.obj
+.PHONY : queue.cpp.obj
+
+queue.i: queue.cpp.i
+
+.PHONY : queue.i
+
+# target to preprocess a source file
+queue.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/queue.cpp.i
+.PHONY : queue.cpp.i
+
+queue.s: queue.cpp.s
+
+.PHONY : queue.s
+
+# target to generate assembly for a file
+queue.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/queue.cpp.s
+.PHONY : queue.cpp.s
+
+test_queue.obj: test_queue.cpp.obj
+
+.PHONY : test_queue.obj
+
+# target to build an object file
+test_queue.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/test_queue.cpp.obj
+.PHONY : test_queue.cpp.obj
+
+test_queue.i: test_queue.cpp.i
+
+.PHONY : test_queue.i
+
+# target to preprocess a source file
+test_queue.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/test_queue.cpp.i
+.PHONY : test_queue.cpp.i
+
+test_queue.s: test_queue.cpp.s
+
+.PHONY : test_queue.s
+
+# target to generate assembly for a file
+test_queue.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/test_queue.cpp.s
+.PHONY : test_queue.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -210,6 +264,12 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... queue.obj
+	@echo ... queue.i
+	@echo ... queue.s
+	@echo ... test_queue.obj
+	@echo ... test_queue.i
+	@echo ... test_queue.s
 .PHONY : help
 
 

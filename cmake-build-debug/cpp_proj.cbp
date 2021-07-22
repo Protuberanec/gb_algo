@@ -92,6 +92,18 @@
 		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/main.cpp">
 			<Option target="cpp_proj"/>
 		</Unit>
+		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/queue.cpp">
+			<Option target="cpp_proj"/>
+		</Unit>
+		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/queue.h">
+			<Option target="cpp_proj"/>
+		</Unit>
+		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/test_queue.cpp">
+			<Option target="cpp_proj"/>
+		</Unit>
+		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/test_queue.h">
+			<Option target="cpp_proj"/>
+		</Unit>
 		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

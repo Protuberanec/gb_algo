@@ -52,10 +52,10 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = C:\jetBrains\apps\CLion\ch-0\211.7442.42\bin\cmake\win\bin\cmake.exe
+CMAKE_COMMAND = C:\jetBrains\apps\CLion\ch-0\211.7628.27\bin\cmake\win\bin\cmake.exe
 
 # The command to remove a file.
-RM = C:\jetBrains\apps\CLion\ch-0\211.7442.42\bin\cmake\win\bin\cmake.exe -E rm -f
+RM = C:\jetBrains\apps\CLion\ch-0\211.7628.27\bin\cmake\win\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -101,21 +101,51 @@ CMakeFiles/cpp_proj.dir/arry_func.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpp_proj.dir/arry_func.cpp.s"
 	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S M:\Projects\cpp\GeekBrains\algo_course\arry_func.cpp -o CMakeFiles\cpp_proj.dir\arry_func.cpp.s
 
+CMakeFiles/cpp_proj.dir/queue.cpp.obj: CMakeFiles/cpp_proj.dir/flags.make
+CMakeFiles/cpp_proj.dir/queue.cpp.obj: ../queue.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=M:\Projects\cpp\GeekBrains\algo_course\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cpp_proj.dir/queue.cpp.obj"
+	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\cpp_proj.dir\queue.cpp.obj -c M:\Projects\cpp\GeekBrains\algo_course\queue.cpp
+
+CMakeFiles/cpp_proj.dir/queue.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpp_proj.dir/queue.cpp.i"
+	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E M:\Projects\cpp\GeekBrains\algo_course\queue.cpp > CMakeFiles\cpp_proj.dir\queue.cpp.i
+
+CMakeFiles/cpp_proj.dir/queue.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpp_proj.dir/queue.cpp.s"
+	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S M:\Projects\cpp\GeekBrains\algo_course\queue.cpp -o CMakeFiles\cpp_proj.dir\queue.cpp.s
+
+CMakeFiles/cpp_proj.dir/test_queue.cpp.obj: CMakeFiles/cpp_proj.dir/flags.make
+CMakeFiles/cpp_proj.dir/test_queue.cpp.obj: ../test_queue.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=M:\Projects\cpp\GeekBrains\algo_course\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/cpp_proj.dir/test_queue.cpp.obj"
+	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\cpp_proj.dir\test_queue.cpp.obj -c M:\Projects\cpp\GeekBrains\algo_course\test_queue.cpp
+
+CMakeFiles/cpp_proj.dir/test_queue.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpp_proj.dir/test_queue.cpp.i"
+	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E M:\Projects\cpp\GeekBrains\algo_course\test_queue.cpp > CMakeFiles\cpp_proj.dir\test_queue.cpp.i
+
+CMakeFiles/cpp_proj.dir/test_queue.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpp_proj.dir/test_queue.cpp.s"
+	C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S M:\Projects\cpp\GeekBrains\algo_course\test_queue.cpp -o CMakeFiles\cpp_proj.dir\test_queue.cpp.s
+
 # Object files for target cpp_proj
 cpp_proj_OBJECTS = \
 "CMakeFiles/cpp_proj.dir/main.cpp.obj" \
-"CMakeFiles/cpp_proj.dir/arry_func.cpp.obj"
+"CMakeFiles/cpp_proj.dir/arry_func.cpp.obj" \
+"CMakeFiles/cpp_proj.dir/queue.cpp.obj" \
+"CMakeFiles/cpp_proj.dir/test_queue.cpp.obj"
 
 # External object files for target cpp_proj
 cpp_proj_EXTERNAL_OBJECTS =
 
 cpp_proj.exe: CMakeFiles/cpp_proj.dir/main.cpp.obj
 cpp_proj.exe: CMakeFiles/cpp_proj.dir/arry_func.cpp.obj
+cpp_proj.exe: CMakeFiles/cpp_proj.dir/queue.cpp.obj
+cpp_proj.exe: CMakeFiles/cpp_proj.dir/test_queue.cpp.obj
 cpp_proj.exe: CMakeFiles/cpp_proj.dir/build.make
 cpp_proj.exe: CMakeFiles/cpp_proj.dir/linklibs.rsp
 cpp_proj.exe: CMakeFiles/cpp_proj.dir/objects1.rsp
 cpp_proj.exe: CMakeFiles/cpp_proj.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=M:\Projects\cpp\GeekBrains\algo_course\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable cpp_proj.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=M:\Projects\cpp\GeekBrains\algo_course\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable cpp_proj.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\cpp_proj.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
