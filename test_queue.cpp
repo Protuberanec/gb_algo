@@ -101,8 +101,134 @@ void test_queue() {
     }
 
     delete queue;
-
-
     std::cout << "Test queue passed OK" << std::endl;
+
+    {   //test copy list to another, not object was created
+        const int AM_EL = 10;
+        const int SIZE_EL = 10;
+        QUEUE *q_source = new QUEUE();
+        DATA data;
+        for (int i = 0; i < AM_EL; i++) {
+            data.fillRandom(SIZE_EL);
+            q_source->push(&data, i);
+        }
+
+        QUEUE *q_dest = nullptr;
+        q_source->copyLinkedListTo(&q_dest);
+
+        DATA source;
+        DATA dest;
+
+        int temp_size0 = 0;
+        int temp_size1 = 0;
+        int current_num_node = 0;
+        while(q_source->peek(&source, current_num_node)) {
+            q_dest->peek(&dest, current_num_node);
+            assert(array1D_compareAllNumbers(source.GetData(temp_size0), dest.GetData(temp_size1), SIZE_EL) == true);
+            assert(temp_size0 == temp_size1);
+            current_num_node++;
+        }
+    }
+
+    {   //test copy list to another list, object created, and empty
+        const int AM_EL = 10;
+        const int SIZE_EL = 10;
+        QUEUE *q_source = new QUEUE();
+        QUEUE *q_dest = new QUEUE();
+        DATA data;
+        for (int i = 0; i < AM_EL; i++) {
+            data.fillRandom(SIZE_EL);
+            q_source->push(&data, i);
+        }
+
+        q_source->copyLinkedListTo(&q_dest);
+
+        DATA source;
+        DATA dest;
+
+        int temp_size0 = 0;
+        int temp_size1 = 0;
+        int current_num_node = 0;
+        while(q_source->peek(&source, current_num_node)) {
+            q_dest->peek(&dest, current_num_node);
+            assert(array1D_compareAllNumbers(source.GetData(temp_size0), dest.GetData(temp_size1), SIZE_EL) == true);
+            assert(temp_size0 == temp_size1);
+            current_num_node++;
+        }
+    }
+
+    {   //test copy list to another list, object created, and filled any data - test erase method
+        const int AM_EL = 10;
+        const int SIZE_EL = 10;
+        QUEUE *q_source = new QUEUE();
+        QUEUE *q_dest = new QUEUE();
+        DATA data;
+        for (int i = 0; i < AM_EL; i++) {
+            data.fillRandom(SIZE_EL);
+            q_source->push(&data, i);
+
+            data.fillRandom(SIZE_EL);
+            q_dest->push(&data, i);
+        }
+
+        q_source->copyLinkedListTo(&q_dest);
+
+        DATA source;
+        DATA dest;
+
+        int temp_size0 = 0;
+        int temp_size1 = 0;
+        int current_num_node = 0;
+        while(q_source->peek(&source, current_num_node)) {
+            q_dest->peek(&dest, current_num_node);
+            assert(array1D_compareAllNumbers(source.GetData(temp_size0), dest.GetData(temp_size1), SIZE_EL) == true);
+            assert(temp_size0 == temp_size1);
+            current_num_node++;
+        }
+    }
+    std::cout << "Test copy lists passed OK" << std::endl;
+
+    {   //array is ascending sorted
+        const int AM_EL = 10;
+        const int SIZE_EL = 10;
+        QUEUE *q_source = new QUEUE();
+        DATA data;
+        for (int i = 0; i < AM_EL; i++) {
+            data.fillRandom(SIZE_EL);
+            q_source->push(&data, i);
+        }
+        assert(q_source->isSortedByPriority(ASCENDING) == true);
+        assert(q_source->isSortedByPriority(DESCENDING) == false);
+    }
+
+    {   //array is descending sorted
+        const int AM_EL = 10;
+        const int SIZE_EL = 10;
+        QUEUE *q_source = new QUEUE();
+        DATA data;
+        srand(time(NULL));
+        for (int i = 0, prior = AM_EL; i < AM_EL; i++, prior--) {
+            data.fillRandom(SIZE_EL);
+            q_source->push(&data, prior);
+        }
+        assert(q_source->isSortedByPriority(DESCENDING) == true);
+        assert(q_source->isSortedByPriority(ASCENDING) == false);
+    }
+
+    {   //array is not sorted
+        const int AM_EL = 10;
+        const int SIZE_EL = 10;
+        QUEUE *q_source = new QUEUE();
+        DATA data;
+        srand(time(NULL));
+        for (int i = 0; i < AM_EL; i++) {
+            data.fillRandom(SIZE_EL);
+            q_source->push(&data, rand() % 2000);
+        }
+        assert(q_source->isSortedByPriority(ASCENDING) == false);
+        assert(q_source->isSortedByPriority(DESCENDING) == false);
+    }
+
+    std::cout << "Test check sorted list by priority array passed OK" << std::endl;
 
 }

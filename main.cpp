@@ -54,11 +54,9 @@ std::pair<bool, QUEUE*>  task1_BracketsAnalyse(const char *brackets_string) {
     }
 
     //priority will used for mark pair of brackets
-
     std::map<char, char> pair_brackets = {{'(', ')'},
                                           {'{', '}'},
                                           {'[', ']'}};
-
     int current_num_node = 0;
     int current_prior_node = 0;
     DATA current_data_node;
@@ -83,8 +81,7 @@ std::pair<bool, QUEUE*>  task1_BracketsAnalyse(const char *brackets_string) {
             current_num_node++;
         }
 
-        //here we must found different open brackets ( or { or [
-
+        //here we must found one of open bracket or ( or { or [
         seq_brackets->SetPriorNode(current_num_node, num_bracket);
         look_for_node = current_num_node + 1;
         while(seq_brackets->peek(&data_look_node, look_for_node)) {
@@ -130,12 +127,17 @@ void test_task1() {
 
 //2. Создать функцию, копирующую односвязный список (без удаления первого списка).
 //3. Реализуйте алгоритм, который определяет, отсортирован ли связный список.
+void test_task2_and_3() {
+    test_queue();   //last test is test copy one list to another
+}
+
 
 int main(int argc, char** argv) {
 
     test_queue();
 
     test_task1();
+    test_task2_and_3();
 
 
     return 0;

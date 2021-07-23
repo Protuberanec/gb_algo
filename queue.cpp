@@ -320,3 +320,75 @@ int QUEUE::GetPriorNode(int num_node, int& prior) {
     return 0;
 }
 
+int QUEUE::copyLinkedListTo(QUEUE **list) {
+    if (*list == nullptr) {
+        *list = new QUEUE(this); //call copy constructor, if list is NULL
+        return amountElements;
+    }
+
+    (*list)->erase();  //remove all elements
+    //start copy elements to list
+    int current_node = 0;
+    int prior = 0;
+    DATA current_data;
+    while(peek(&current_data, current_node)) {
+        GetPriorNode(current_node, prior);
+        (*list)->push(&current_data, prior);
+        current_node++;
+    }
+
+    return amountElements;
+}
+
+
+QUEUE::QUEUE(QUEUE* old_list) {
+    HEAD = new NODE();
+    TAIL = HEAD;
+
+    NODE* current_node = HEAD;
+    DATA current_data;
+    int num_node = 0;
+    int prior_current_node = 0;
+    while (old_list->peek(&current_data, num_node)) {
+        old_list->GetPriorNode(num_node, prior_current_node);
+        push(&current_data, prior_current_node);
+        num_node++;
+    }
+}
+
+int QUEUE::erase() {
+    DATA* temp;
+    while(pop(temp));
+
+    return 0;
+}
+
+bool QUEUE::isSortedByPriority(bool ascending) {
+    int current_node = 0;
+
+    int current_prior = 0;
+    int prev_prior = std::numeric_limits<int>::min();;
+
+    if (ascending == false) {
+        prev_prior = std::numeric_limits<int>::max();
+    }
+
+    while(GetPriorNode(current_node, current_prior)) {
+        if (ascending) {    //it can be put over cycle... can be economy little bit time
+            if (current_prior < prev_prior) {
+                return false;
+            }
+            prev_prior = current_prior;
+        }
+        else {
+            if (current_prior > prev_prior) {
+                return false;
+            }
+            prev_prior = current_prior;
+        }
+        current_node++;
+    }
+
+    return true;
+}
+

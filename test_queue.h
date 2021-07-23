@@ -9,6 +9,9 @@
 #include "queue.h"
 #include "array_func.h"
 
+#define ASCENDING   true
+#define DESCENDING   false
+
 void test_queue();
 
 #endif //CPP_PROJ_TEST_QUEUE_H

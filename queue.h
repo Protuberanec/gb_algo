@@ -87,7 +87,10 @@ private :
 
 public:
     QUEUE();
+    QUEUE(QUEUE*);
     ~QUEUE();
+
+    int erase();
 
     int push(const DATA* data, int prior_);
     int pop(DATA* data_);  //last insterted
@@ -96,9 +99,13 @@ public:
 
     int ShowAllElements_non_rec();
     int getAmountElements();
-    int ShowAllElements_rec();
+    int ShowAllElements_rec();  //not so hard... in next function send next node, while not equal nullptr
     int SetPriorNode(int num_node, int prior);
     int GetPriorNode(int num_node, int& prior);
+
+    int copyLinkedListTo(QUEUE **list);
+
+    bool isSortedByPriority(bool ascending = true);   //e.g.
 };
 
 #endif //CPP_PROJ_QUEUE_H
