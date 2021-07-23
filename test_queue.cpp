@@ -82,6 +82,24 @@ void test_queue() {
         }
     }
 
+
+    {   //test pop method
+        QUEUE *q1 = new QUEUE();
+        const int AMOUNT_EL = 10;
+        DATA data[AMOUNT_EL];
+        for (int i = 0; i < AMOUNT_EL; i++) {
+            data[i].fillRandom(5);
+            q1->push(&data[i], rand() % 20 + 1);
+        }
+
+        DATA data_out;
+        int size1, size0;
+        for (int i = AMOUNT_EL-1; i >= 0; i--) {
+            q1->pop(&data_out);
+            assert(array1D_compareAllNumbers(data_out.GetData(size1), data[i].GetData(size0), 5) == true);
+        }
+    }
+
     delete queue;
 
 

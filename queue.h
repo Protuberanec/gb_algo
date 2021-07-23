@@ -55,26 +55,27 @@ private :
     DATA *data_node;
 
 public:
-    int getDataNode(DATA* data_);
-    int getPriority() const;
-
     NODE();
     NODE(const NODE&);
     NODE(const DATA& data_);
     NODE(const DATA& data_, int prior);
     ~NODE();
     size_t ShowNodeData();
-
-    NODE *getNext() const;
     void setNext(NODE *next);
+
+    int getDataNode(DATA* data_);
+    NODE *getNext() const;
+
     NODE *getPrev() const;void setPrev(NODE *prev);
 
     void setData(const DATA *data_);
+
     void setPriority(int priority);
+    int getPriority() const;
 
 
     void ReleaseNode(int node);    //important!!! delete any relations with next elements, otherwise all elements \
-                                    // will delete while next will not equal nullptr
+    // will delete while next will not equal nullptr
                                     //algorithm is easy, need remove relations with next elements, after call delete
 };
 
@@ -89,13 +90,15 @@ public:
     ~QUEUE();
 
     int push(const DATA* data, int prior_);
-    int pop(DATA* data);  //last insterted
+    int pop(DATA* data_);  //last insterted
     int pop_by_prior(DATA* data); //with highenest priority
-    int peek(const DATA* data);
+    int peek(DATA* data, int num_node = -1);
 
     int ShowAllElements_non_rec();
     int getAmountElements();
     int ShowAllElements_rec();
+    int SetPriorNode(int num_node, int prior);
+    int GetPriorNode(int num_node, int& prior);
 };
 
 #endif //CPP_PROJ_QUEUE_H

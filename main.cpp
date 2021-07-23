@@ -17,111 +17,126 @@
 #include "queue.h"
 #include "test_queue.h"
 
-/*
- * Очередь с приоритетами — это очередь в которой включение либо исключение, элементов производится в соответствии с их приоритетами.
- * Очередь с приоритетным включением — такая очередь, в которой последовательность элементов все время поддерживается упорядоченной по убыванию приоритета. (положить элемент за log(N) извлечь за..???
- * Очередь с приоритетным исключением — очередь, в которой включение элементов осуществляется в конец, а при исключении производится поиск элемента с максимальным приоритетом. (положить элемент за O(1), извлечь за log(N)?
- */
-
 using namespace std;
 
-struct STACK {
-    int *array;
-    int size;
-    int pEnd;
+//1. Написать программу, которая определяет, является ли введенная скобочная последовательность правильной.
+// Примеры правильных скобочных выражений: (), ([])(), {}(), ([{}]),
+// - неправильных — )(, ())({), (, ])}), ([(])
+// для скобок [,(,{. Например: (2+(2*2)) или [2/{5*(4+7)}]
 
-    STACK()  {
-        pEnd = -1;
-        array = new int [32];
-        size = 32;
-        memset(array, 0x00, 32*sizeof(int));
+QUEUE* fillListByBrackets(const char* brackets_string) {
+    QUEUE *seq_brackets = new QUEUE();
+
+    int size = strlen(brackets_string);
+    for (int i = 0; i < size; i++) {
+        if (brackets_string[i] == '[' || brackets_string[i] == ']' ||
+            brackets_string[i] == '(' || brackets_string[i] == ')' ||
+            brackets_string[i] == '{' || brackets_string[i] == '}')
+        {
+            seq_brackets->push(new DATA(1, new int{brackets_string[i]}), 0);
+        }
     }
-    STACK(int size_) {
-        pEnd = -1;
-        array = new int [size_];
-        size = size_;
-        memset(array, 0x00, size_*sizeof(int));
-    }
-    ~STACK() {
-        delete [] array;
+    return seq_brackets;
+}
+
+/*
+ *  input       :   string with brackets
+ *  output      :   true if brackets enough, otherwise false, and structure wich contain brackets
+ *  descritpion :
+ *  date        :
+ *  author      :
+ *  version     :
+ */
+std::pair<bool, QUEUE*>  task1_BracketsAnalyse(const char *brackets_string) {
+    QUEUE *seq_brackets = fillListByBrackets(brackets_string);
+    if (strlen(brackets_string) % 2) {
+        return {false, seq_brackets};   //if brackets is not even, everytime don't have 1 bracket
     }
 
-    int push(int element) {
-        if (pEnd >= size) {
-            return -1;  //stack is full
+    //priority will used for mark pair of brackets
+
+    std::map<char, char> pair_brackets = {{'(', ')'},
+                                          {'{', '}'},
+                                          {'[', ']'}};
+
+    int current_num_node = 0;
+    int current_prior_node = 0;
+    DATA current_data_node;
+    char current_bracket;
+
+    int look_for_node = current_num_node + 1;
+    DATA data_look_node;
+    //first must be ( or [ or { otherwise return false
+
+    int num_bracket = 1;
+    while(seq_brackets->peek(&current_data_node, current_num_node)) {
+        while(seq_brackets->GetPriorNode(current_num_node, current_prior_node)) {
+            if (current_prior_node == 0) {  //look for bracket which will not processed
+                int size;
+                seq_brackets->peek(&current_data_node, current_num_node);
+                current_bracket = (char)current_data_node.GetData(size)[0];
+                if (current_bracket == ')' || current_bracket == ']' || current_bracket == '}'){
+                    return {false, seq_brackets};   //
+                }
+                break;
+            }
+            current_num_node++;
         }
 
-        array[++pEnd] = element;
-        return pEnd;
-    }
+        //here we must found different open brackets ( or { or [
 
-    int pop(int& element) {
-        if (pEnd < 0) {
-            return -1;  //no elements in stack
+        seq_brackets->SetPriorNode(current_num_node, num_bracket);
+        look_for_node = current_num_node + 1;
+        while(seq_brackets->peek(&data_look_node, look_for_node)) {
+            int temp_prior = 0;
+            int temp;
+            seq_brackets->GetPriorNode(look_for_node, temp_prior);
+            if (pair_brackets[current_bracket] == (char)data_look_node.GetData(temp)[0] && temp_prior == 0) {
+                seq_brackets->SetPriorNode(look_for_node, num_bracket);
+                break;
+            }
+            look_for_node++;
         }
-        element = array[pEnd--];
-        return 1;
-    }
-};
-
-STACK* convert_dec_to_bin(int dec) {
-    STACK *bin_num = new STACK(32); //assume that number will not exceed 32 binary number....
-
-    while(dec != 0) {
-        bin_num->push(dec % 2);
-        dec = dec / 2;
+        current_num_node++;
+        num_bracket++;
     }
 
-    return bin_num;
+//if need get structure with brackets... need remove this strings....
+    delete seq_brackets;
+    seq_brackets = nullptr;
+    return {true, seq_brackets};
 }
 
-char* getBinNum(int dec) {
-    STACK *bin_num = convert_dec_to_bin(dec);
-    char *temp_str = new char [bin_num->pEnd + 1];
-    memset(temp_str, 0x00, bin_num->pEnd * (sizeof(char)) + 1);
+void test_task1() {
+    assert(task1_BracketsAnalyse("([])()").first == true);
+    assert(task1_BracketsAnalyse("[][]{}{()}()").first == true);
+    assert(task1_BracketsAnalyse("[[[[()]]]{({()})}]").first == true);
+    assert(task1_BracketsAnalyse(")(").first == false);
+    assert(task1_BracketsAnalyse("])})").first == false);
+    assert(task1_BracketsAnalyse("}()()").first == false);
+    assert(task1_BracketsAnalyse("(").first == false);
+    assert(task1_BracketsAnalyse("([(])").first == false);
+    assert(task1_BracketsAnalyse("([(])").first == false);
+    assert(task1_BracketsAnalyse("()[]()]()").first == false);
+    assert(task1_BracketsAnalyse("())").first == false);
+    assert(task1_BracketsAnalyse("()").first == true);
+    assert(task1_BracketsAnalyse("([{}])").first == true);
+    assert(task1_BracketsAnalyse("{}()").first == true);
+    assert(task1_BracketsAnalyse("())({)").first == false);
 
-    int element;
-    int i = 0;
-    while(bin_num->pop(element) > 0) {
-        temp_str[i++] = element + 0x30; //as ASCII codes
-    }
-
-    return temp_str;
+    cout << "test brackets passed OK" << endl;
 }
 
-void test_getBinNun() {
-    {
-        char *bin_num0 = getBinNum(43);
-        assert(strcmp(bin_num0, "101011\0") == 0);
-        delete[] bin_num0;
-    }
-    {
-        char *bin_num0 = getBinNum(99);
-        assert(strcmp(bin_num0, "1100011\0") == 0);
-        delete[] bin_num0;
-    }
-    {
-        char *bin_num0 = getBinNum(368);
-        assert(strcmp(bin_num0, "101110000\0") == 0);
-        delete[] bin_num0;
-    }
-    {
-        //don't test negative number
-        //negative number can'be present in 3 mode
-            //прямой, дополнительный, обратный
-    }
-    std::cout << "test convert bin num passed OK" << std::endl;
-}
 
+//2. Создать функцию, копирующую односвязный список (без удаления первого списка).
+//3. Реализуйте алгоритм, который определяет, отсортирован ли связный список.
 
 int main(int argc, char** argv) {
-// 1. Описать очередь с приоритетным исключением
-//described in file queue.*
-//test queue in test_queue
+
     test_queue();
 
-// 2. Реализовать перевод из десятичной в двоичную систему счисления с использованием стека.
-    test_getBinNun();
+    test_task1();
+
 
     return 0;
 }

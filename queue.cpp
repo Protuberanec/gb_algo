@@ -40,8 +40,9 @@ DATA::~DATA() {
 
 void DATA::fillRandom(size_t size_) {
     size = size_;
-    if (data != nullptr)
+    if (data != nullptr) {
         delete [] data;
+    }
 
     data = new int [size];
 
@@ -59,7 +60,7 @@ size_t DATA::ShowData() {
         return 0;
     }
     for (int i = 0; i < size; i++) {
-        std::cout << data[i] << " ";
+        std::cout << (char)data[i] << " ";  //oxox manual mode....
     }
     std::cout << std::endl;
 
@@ -153,10 +154,12 @@ int NODE::getPriority() const {
 }
 
 int NODE::getDataNode(DATA* data_) {
+    if (data_ == nullptr) {
+        data_ = new DATA();
+    }
     data_node->CopyData(data_);
     return 0;
 }
-
 
 QUEUE::QUEUE() {
                         //at first time HEAD will empty
@@ -257,3 +260,63 @@ int QUEUE::pop_by_prior(DATA *data) {
 int QUEUE::getAmountElements() {
     return amountElements;
 }
+
+int QUEUE::pop(DATA *data_) {
+    if (TAIL->getPrev() == nullptr) {
+        return 0;
+    }
+    TAIL->getPrev()->getDataNode(data_);    //because TAIL don't have data...
+
+    NODE *temp_node = TAIL->getPrev();
+    delete TAIL;
+    TAIL = temp_node;
+    TAIL->setNext(nullptr);
+
+    return 1;
+}
+
+int QUEUE::peek(DATA *data, int num_node) {
+    NODE* current_node = HEAD;
+    int count_node = 0;
+    while (current_node->getNext() != nullptr) {
+        if (count_node == num_node) {
+            current_node->getDataNode(data);
+            return 1;
+        }
+
+        current_node = current_node->getNext();
+        count_node++;
+    }
+    return 0;
+}
+
+int QUEUE::SetPriorNode(int num_node, int prior) {
+    int count_node = 0;
+    NODE *current_node = HEAD;
+    while (current_node->getNext() != nullptr) {
+        if (count_node == num_node) {
+            current_node->setPriority(prior);
+            return 1;
+        }
+
+        current_node = current_node->getNext();
+        count_node++;
+    }
+    return 0;
+}
+
+int QUEUE::GetPriorNode(int num_node, int& prior) {
+    int count_node = 0;
+    NODE *current_node = HEAD;
+    while (current_node->getNext() != nullptr) {
+        if (count_node == num_node) {
+            prior = current_node->getPriority();
+            return 1;
+        }
+
+        current_node = current_node->getNext();
+        count_node++;
+    }
+    return 0;
+}
+
