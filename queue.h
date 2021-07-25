@@ -95,13 +95,13 @@ public:
     int push(const DATA* data, int prior_);
     int pop(DATA* data_);  //last insterted
     int pop_by_prior(DATA* data); //with highenest priority
-    int peek(DATA* data, int num_node = -1);
+    int peek(DATA* data, int num_node = -1) const;
 
     int ShowAllElements_non_rec();
     int getAmountElements();
     int ShowAllElements_rec();  //not so hard... in next function send next node, while not equal nullptr
     int SetPriorNode(int num_node, int prior);
-    int GetPriorNode(int num_node, int& prior);
+    int GetPriorNode(int num_node, int& prior) const;
 
     int copyLinkedListTo(QUEUE **list);
 

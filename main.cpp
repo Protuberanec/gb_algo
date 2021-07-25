@@ -47,68 +47,121 @@ QUEUE* fillListByBrackets(const char* brackets_string) {
  *  author      :
  *  version     :
  */
-std::pair<bool, QUEUE*>  task1_BracketsAnalyse(const char *brackets_string) {
-    QUEUE *seq_brackets = fillListByBrackets(brackets_string);
-    if (strlen(brackets_string) % 2) {
-        return {false, seq_brackets};   //if brackets is not even, everytime don't have 1 bracket
+
+std::tuple<int /*num node*/, char /*bracket*/, bool /*found*/> getNodeCloseBracket(const QUEUE* brackets_queue, int start_node = 1) {
+    int current_node = start_node;
+    DATA data_node;
+    int size;
+    int prior_current_node;
+    while (brackets_queue->peek(&data_node, current_node)) {
+        if (data_node.GetData(size)[0] == ')' ||
+            data_node.GetData(size)[0] == ']' ||
+            data_node.GetData(size)[0] == '}')
+        {
+            //check priority, if priority == 0... we find the brackets...
+            brackets_queue->GetPriorNode(current_node, prior_current_node);
+            if (prior_current_node == 0) {
+                return {current_node, data_node.GetData(size)[0], true};
+            }
+        }
+
+        current_node++;
     }
+    return {current_node, ' ', false};
+}
+//decrement
+std::pair<int, bool> getNodeOpenBracket(const QUEUE* brackets_queue, char bracket, int start_node = -1) {
+    if (start_node == -1) {
+        return {-1, false};
+    }
+    int current_node = start_node;
+    DATA data_node;
+    int size;
+    int prior_current_node;
+    std::map<char, char> pair_brackets = {{'(', ')'},
+                                          {')', '('},
+                                          {'{', '}'},
+                                          {'}', '{'},
+                                          {'[', ']'},
+                                          {']', '['}};
+    while (brackets_queue->peek(&data_node, current_node)) {
+        if (data_node.GetData(size)[0] == pair_brackets[bracket]) {
+            brackets_queue->GetPriorNode(current_node, prior_current_node);
+            if (prior_current_node != 0) {
+                current_node--;
+                continue;
+            }
+            return {current_node, true};
+        }
+        else {
+            //if open bracket with priority = 0... return false
+            brackets_queue->GetPriorNode(current_node, prior_current_node);
+            if (prior_current_node == 0) {
+                if (data_node.GetData(size)[0] == '(' ||
+                    data_node.GetData(size)[0] == '{' ||
+                    data_node.GetData(size)[0] == '[')
+                {
+                    return {-1, false};
+                }
+            }
+        }
+        current_node--;
+        if (current_node < 0) {
+            break;
+        }
+    }
+    return {-1, false};
+}
+
+std::pair<bool, QUEUE*>  task1_BracketsAnalyse(const char *brackets_string) {
+    if (strlen(brackets_string) % 2) {
+        return {false, nullptr};   //if brackets is not even, everytime don't have 1 bracket
+    }
+    if (brackets_string[0] == ')' ||
+        brackets_string[0] == ']' ||
+        brackets_string[0] == '}')
+    {
+        return {false, nullptr};
+    }
+    QUEUE *brackets_queue = fillListByBrackets(brackets_string);
 
     //priority will used for mark pair of brackets
-    std::map<char, char> pair_brackets = {{'(', ')'},
-                                          {'{', '}'},
-                                          {'[', ']'}};
-    int current_num_node = 0;
-    int current_prior_node = 0;
-    DATA current_data_node;
-    char current_bracket;
-
-    int look_for_node = current_num_node + 1;
-    DATA data_look_node;
-    //first must be ( or [ or { otherwise return false
-
-    int num_bracket = 1;
-    while(seq_brackets->peek(&current_data_node, current_num_node)) {
-        while(seq_brackets->GetPriorNode(current_num_node, current_prior_node)) {
-            if (current_prior_node == 0) {  //look for bracket which will not processed
-                int size;
-                seq_brackets->peek(&current_data_node, current_num_node);
-                current_bracket = (char)current_data_node.GetData(size)[0];
-                if (current_bracket == ')' || current_bracket == ']' || current_bracket == '}'){
-                    return {false, seq_brackets};   //
-                }
-                break;
-            }
-            current_num_node++;
+    int num_brackets = 1;
+    int current_close_bracket = 0;
+    DATA data;
+    while(brackets_queue->peek(&data, current_close_bracket)) {
+        auto[num_node_close_bracket, bracket, ok] = getNodeCloseBracket(brackets_queue, current_close_bracket);
+        brackets_queue->SetPriorNode(num_node_close_bracket, num_brackets);
+        current_close_bracket = num_node_close_bracket + 1;
+        if (ok == false) {
+            delete brackets_queue;
+            brackets_queue = nullptr;
+            return {false, brackets_queue};
         }
 
-        //here we must found one of open bracket or ( or { or [
-        seq_brackets->SetPriorNode(current_num_node, num_bracket);
-        look_for_node = current_num_node + 1;
-        while(seq_brackets->peek(&data_look_node, look_for_node)) {
-            int temp_prior = 0;
-            int temp;
-            seq_brackets->GetPriorNode(look_for_node, temp_prior);
-            if (pair_brackets[current_bracket] == (char)data_look_node.GetData(temp)[0] && temp_prior == 0) {
-                seq_brackets->SetPriorNode(look_for_node, num_bracket);
-                break;
-            }
-            look_for_node++;
+        auto [num_node_open_bracket, ok1] = getNodeOpenBracket(brackets_queue, bracket, num_node_close_bracket-1); //here go left, and look for first bracket without prior, and equal to vice versa bracket
+        if (ok1 == false) {
+            delete brackets_queue;
+            brackets_queue = nullptr;
+            return {false, brackets_queue};
         }
-        current_num_node++;
-        num_bracket++;
+        brackets_queue->SetPriorNode(num_node_open_bracket, num_brackets);
+
+        num_brackets++;
     }
-
-//if need get structure with brackets... need remove this strings....
-    delete seq_brackets;
-    seq_brackets = nullptr;
-    return {true, seq_brackets};
+//if need get structure with brackets... need remove strings delete ....
+    delete brackets_queue;
+    brackets_queue = nullptr;
+    return {true, brackets_queue};
 }
 
 void test_task1() {
-    assert(task1_BracketsAnalyse("([])()").first == true);
-    assert(task1_BracketsAnalyse("[][]{}{()}()").first == true);
     assert(task1_BracketsAnalyse("[[[[()]]]{({()})}]").first == true);
+    assert(task1_BracketsAnalyse("([])()").first == true);
+    assert(task1_BracketsAnalyse("([{])(})").first == false);
+    assert(task1_BracketsAnalyse("[][]{}{()}()").first == true);
     assert(task1_BracketsAnalyse(")(").first == false);
+    assert(task1_BracketsAnalyse("([){}(]){}").first == false);
     assert(task1_BracketsAnalyse("])})").first == false);
     assert(task1_BracketsAnalyse("}()()").first == false);
     assert(task1_BracketsAnalyse("(").first == false);
@@ -120,6 +173,7 @@ void test_task1() {
     assert(task1_BracketsAnalyse("([{}])").first == true);
     assert(task1_BracketsAnalyse("{}()").first == true);
     assert(task1_BracketsAnalyse("())({)").first == false);
+    assert(task1_BracketsAnalyse("({})()([}{])").first == false);
 
     cout << "test brackets passed OK" << endl;
 }
@@ -139,6 +193,7 @@ int main(int argc, char** argv) {
     test_task1();
     test_task2_and_3();
 
+    std::cout << "\t\tall tests passed OK" << std::endl;
 
     return 0;
 }

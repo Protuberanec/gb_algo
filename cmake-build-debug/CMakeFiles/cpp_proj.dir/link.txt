@@ -1,3 +1,0 @@
-C:\jetBrains\apps\CLion\ch-0\211.7628.27\bin\cmake\win\bin\cmake.exe -E rm -f CMakeFiles\cpp_proj.dir/objects.a
-C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\ar.exe cr CMakeFiles\cpp_proj.dir/objects.a @CMakeFiles\cpp_proj.dir\objects1.rsp
-C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\cpp_proj.dir/objects.a -Wl,--no-whole-archive -o cpp_proj.exe -Wl,--out-implib,libcpp_proj.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cpp_proj.dir\linklibs.rsp
