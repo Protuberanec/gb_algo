@@ -275,7 +275,7 @@ int QUEUE::pop(DATA *data_) {
     return 1;
 }
 
-int QUEUE::peek(DATA *data, int num_node) {
+int QUEUE::peek(DATA *data, int num_node) const {
     NODE* current_node = HEAD;
     int count_node = 0;
     while (current_node->getNext() != nullptr) {
@@ -305,7 +305,7 @@ int QUEUE::SetPriorNode(int num_node, int prior) {
     return 0;
 }
 
-int QUEUE::GetPriorNode(int num_node, int& prior) {
+int QUEUE::GetPriorNode(int num_node, int& prior) const {
     int count_node = 0;
     NODE *current_node = HEAD;
     while (current_node->getNext() != nullptr) {

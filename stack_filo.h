@@ -15,8 +15,8 @@ private:
     int size;
     int last_el_index;
 public:
-    FILO(int size_);
     FILO();
+    FILO(int size_);
 
     ~FILO();
 
