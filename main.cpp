@@ -30,10 +30,7 @@ QUEUE* fillListByBrackets(const char* brackets_string) {
 
     int size = strlen(brackets_string);
     for (int i = 0; i < size; i++) {
-        if (brackets_string[i] == '[' || brackets_string[i] == ']' ||
-            brackets_string[i] == '(' || brackets_string[i] == ')' ||
-            brackets_string[i] == '{' || brackets_string[i] == '}')
-        {
+        if (in_array("[]{}()\0", brackets_string[i])) {
             seq_brackets->push(new DATA(1, new int{brackets_string[i]}), 0);
         }
     }
@@ -55,9 +52,7 @@ std::tuple<int /*num node*/, char /*bracket*/, bool /*found*/> getNodeCloseBrack
     int size;
     int prior_current_node;
     while (brackets_queue->peek(&data_node, current_node)) {
-        if (data_node.GetData(size)[0] == ')' ||
-            data_node.GetData(size)[0] == ']' ||
-            data_node.GetData(size)[0] == '}')
+        if (in_array(")]}\0", data_node.GetData(size)[0]))
         {
             //check priority, if priority == 0... we find the brackets...
             brackets_queue->GetPriorNode(current_node, prior_current_node);
@@ -98,10 +93,7 @@ std::pair<int, bool> getNodeOpenBracket(const QUEUE* brackets_queue, char bracke
             //if open bracket with priority = 0... return false
             brackets_queue->GetPriorNode(current_node, prior_current_node);
             if (prior_current_node == 0) {
-                if (data_node.GetData(size)[0] == '(' ||
-                    data_node.GetData(size)[0] == '{' ||
-                    data_node.GetData(size)[0] == '[')
-                {
+                if (in_array("({[\0", data_node.GetData(size)[0])){
                     return {-1, false};
                 }
             }
@@ -118,10 +110,7 @@ std::pair<bool, QUEUE*>  task1_BracketsAnalyse_queue(const char *brackets_string
     if (strlen(brackets_string) % 2) {
         return {false, nullptr};   //if brackets is not even, everytime don't have 1 bracket
     }
-    if (brackets_string[0] == ')' ||
-        brackets_string[0] == ']' ||
-        brackets_string[0] == '}')
-    {
+    if (in_array(")]}\0", brackets_string[0])) {
         return {false, nullptr};
     }
     QUEUE *brackets_queue = fillListByBrackets(brackets_string);
@@ -165,10 +154,7 @@ bool BracketsAnalyse_filo(const char* brackets_string) {
     int amount_brackets = strlen(brackets_string);
     FILO *brackets_stack = new FILO(amount_brackets / 2 + 1);
     for (int i = 0; i < amount_brackets; i++) {
-        if (brackets_string[i] == '(' ||
-            brackets_string[i] == '[' ||
-            brackets_string[i] == '{')
-        {
+        if (in_array("([{\0", brackets_string[i])) {
             brackets_stack->push(brackets_string[i]);
             continue;
         }

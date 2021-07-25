@@ -7,8 +7,15 @@
 
 #include <time.h>
 #include <random>
+#include <stdio.h>
+#include <cstring>
+#include <iostream>
 
 //#define REAL_UNIQUE
+
+
+bool in_array(const char* in_str, char element);
+
 template<class T>
 void Create1DArray(T* &ar, int size, bool fill_rand = true, bool unique = true) {
     ar = new T [size];
