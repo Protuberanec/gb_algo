@@ -31,5 +31,6 @@ int FILO::pop(char &el) {
         return 0;
     }
     el = ar[last_el_index--];
+
     return 1;
 }

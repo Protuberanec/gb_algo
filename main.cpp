@@ -288,7 +288,6 @@ void test_task2_and_3() {
     test_queue();   //last test is test copy one list to another
 }
 
-
 int main(int argc, char** argv) {
 
     test_task1_queue(); //with queue
