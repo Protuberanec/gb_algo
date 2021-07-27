@@ -11,6 +11,7 @@
 #include <time.h>
 #include <windows.h>
 #include <sysinfoapi.h>
+#include <regex>
 
 #include "array_func.h"
 #include "ConsoleWork.h"
@@ -171,7 +172,27 @@ bool BracketsAnalyse_filo(const char* brackets_string) {
     return true;
 }
 
+bool BracketAnalyse_regex(const char* bracket_string) {
+    std::regex regular("[\\(][\\)]|[\\[][\\]]|[\\{][\\}]");
+    std::string temp_str = bracket_string;
+    int size_1, size_2;
+    size_1 = temp_str.size();
+    size_2 = size_1;
+    while(temp_str.size() > 0) {
+        temp_str = std::regex_replace(temp_str, regular, "");
+        size_1 = temp_str.size();
+        if (size_1 != size_2) {
+            size_2 = size_1;
+        }
+        else {
+            return false;
+        }
+    }
+    return true;
+}
+
 void test_task1_stack() {
+    int time1 = GetTickCount();
     assert(BracketsAnalyse_filo("(({)(}))") == false);
     assert(BracketsAnalyse_filo(")((({)(}))") == false);
     assert(BracketsAnalyse_filo("}{(({)(}))") == false);
@@ -195,12 +216,15 @@ void test_task1_stack() {
     assert(BracketsAnalyse_filo("{}()") == true);
     assert(BracketsAnalyse_filo("())({)") == false);
     assert(BracketsAnalyse_filo("())(){)") == false);
-    cout << "test brackets with STACK passed OK" << endl;
+    time1 = GetTickCount() - time1;
+    cout << "test brackets with STACK passed OK " << time1 << endl;
 }
 
 void test_task1_queue() {
-    assert(task1_BracketsAnalyse_queue("[[[[()]]]{({()})}]").first == true);
+    int time1 = GetTickCount();
+    assert(task1_BracketsAnalyse_queue("{}(())").first == true);
     assert(task1_BracketsAnalyse_queue("()(())").first == true);
+    assert(task1_BracketsAnalyse_queue("[[[[()]]]{({()})}]").first == true);
     assert(task1_BracketsAnalyse_queue("(({)(}))").first == false);
     assert(task1_BracketsAnalyse_queue("][(()())").first == false);
     assert(task1_BracketsAnalyse_queue(")((()())").first == false);
@@ -223,9 +247,41 @@ void test_task1_queue() {
     assert(task1_BracketsAnalyse_queue("{}()").first == true);
     assert(task1_BracketsAnalyse_queue("())({)").first == false);
 
-    cout << "test brackets with QUEUE passed OK" << endl;
+    time1 = GetTickCount() - time1;
+
+    cout << "test brackets with QUEUE passed OK " << time1 << endl;
 }
 
+void test_task1_regex() {
+    int time1 = GetTickCount();
+    assert(BracketAnalyse_regex("(({)(}))") == false);
+    assert(BracketAnalyse_regex("[[[[()]]]{({()})}]") == true);
+    assert(BracketAnalyse_regex(")((({)(}))") == false);
+    assert(BracketAnalyse_regex("}{(({)(}))") == false);
+    assert(BracketAnalyse_regex("][(({)(}))") == false);
+    assert(BracketAnalyse_regex("(()())") == true);
+    assert(BracketAnalyse_regex("({)}") == false);
+    assert(BracketAnalyse_regex("({[)]}") == false);
+    assert(BracketAnalyse_regex("([])()") == true);
+    assert(BracketAnalyse_regex("[][]{}{()}()") == true);
+    assert(BracketAnalyse_regex("[[[[()]]]{({()})}]") == true);
+    assert(BracketAnalyse_regex(")(") == false);
+    assert(BracketAnalyse_regex("])})") == false);
+    assert(BracketAnalyse_regex("}()()") == false);
+    assert(BracketAnalyse_regex("(") == false);
+    assert(BracketAnalyse_regex("([(])") == false);
+    assert(BracketAnalyse_regex("([(])") == false);
+    assert(BracketAnalyse_regex("()[]()]()") == false);
+    assert(BracketAnalyse_regex("())") == false);
+    assert(BracketAnalyse_regex("()") == true);
+    assert(BracketAnalyse_regex("([{}])") == true);
+    assert(BracketAnalyse_regex("{}()") == true);
+    assert(BracketAnalyse_regex("())({)") == false);
+    assert(BracketAnalyse_regex("())(){)") == false);
+    time1 = GetTickCount() - time1;
+
+    cout << "test brackets with REGEX passed OK " << time1 << endl;
+}
 //2. Создать функцию, копирующую односвязный список (без удаления первого списка).
 //3. Реализуйте алгоритм, который определяет, отсортирован ли связный список.
 void test_task2_and_3() {
@@ -237,6 +293,7 @@ int main(int argc, char** argv) {
 
     test_task1_queue(); //with queue
     test_task1_stack(); //with stack
+    test_task1_regex(); //regular
 
     test_task2_and_3();
 
