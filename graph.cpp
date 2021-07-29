@@ -13,6 +13,11 @@ GRAPH::GRAPH() {
         AdjMatrix[i] = new int [N_vertex];
         memset(AdjMatrix[i], 0x00, N_vertex * sizeof(int));
     }
+    presence = new int [N_vertex];
+    memset(presence, 0x00, N_vertex * sizeof(int));
+
+    count_relations = new int [N_vertex];
+    memset(count_relations, 0x00, N_vertex * sizeof(int));
 }
 
 GRAPH::~GRAPH() {
@@ -20,6 +25,9 @@ GRAPH::~GRAPH() {
         delete [] AdjMatrix[i];
     }
     delete [] AdjMatrix;
+
+    delete [] presence;
+    delete [] count_relations;
 }
 
 GRAPH::GRAPH(int nVertex) : N_vertex(nVertex) {
@@ -28,11 +36,16 @@ GRAPH::GRAPH(int nVertex) : N_vertex(nVertex) {
         AdjMatrix[i] = new int [N_vertex];
         memset(AdjMatrix[i], 0x00, N_vertex * sizeof(int));
     }
+    presence = new int [N_vertex];
+    memset(presence, 0x00, N_vertex * sizeof(int));
+
+    count_relations = new int [N_vertex];
+    memset(count_relations, 0x00, N_vertex * sizeof(int));
 }
 /*
  *  input       :
  *  output      :
- *  descirption :   перебор в ширину....
+ *  descirption :   перебор в ширину.... с использованиее стека
  *  author      :   我
  *  date        :   2021.07.29
  */
@@ -65,7 +78,7 @@ void GRAPH::breadthFirst(int vertex) const {
 /*
  *  input       :
  *  output      :
- *  descirption :   перебор в ширину....
+ *  descirption :   перебор в ширину.... с использование стека
  *  author      :   我
  *  date        :   2021.07.29
  */
@@ -125,3 +138,95 @@ void GRAPH::removeGraph() {
     delete [] AdjMatrix;
     N_vertex = 0;
 }
+
+INFO_VERTEX* GRAPH::countAdjVertexWithMain(int main_vertex) {
+    restartPresence();
+    restartRelations();
+
+    countAdjVertex(0, main_vertex);
+
+    INFO_VERTEX* infoVertex = new INFO_VERTEX(N_vertex + 1);
+
+    for (int i = 0; i < N_vertex; i++) {
+        int indMax = array1D_GetIndexMax(count_relations, N_vertex);
+        infoVertex->push({indMax, count_relations[indMax]});
+        count_relations[indMax] = std::numeric_limits<int>::min();
+    }
+
+    return infoVertex;
+}
+
+// 2.1 - обход графа рекурсивной функцией (с подсчётом только смежных со стартовой вершин)
+int GRAPH::depthFirst_rec(int head_vertex, int current_vertex) const {
+    FIFO<int> *stack = new FIFO<int>(N_vertex);
+    int count = 0;
+
+    for (int i = 0; i < N_vertex; i++) {
+        if (presence[i] != 1 && AdjMatrix[current_vertex][i] == 1) {
+            stack->push(i);
+            presence[i] = 1;
+            if (current_vertex == head_vertex) {
+                count++;
+            }
+        }
+    }
+    int next_element;
+    if (stack->pop(next_element)) {
+        count += depthFirst_rec(head_vertex, next_element);
+    }
+
+    delete stack;
+
+    return count;
+}
+
+// 2.2 - обход графа по матрице смежности (с подсчётом всех вершин графа) В конце обхода вывести
+//       два получившихся списка всех узлов в порядке уменьшения количества ссылок на них.
+/*  input       :   vertex - start go through graph,
+ *                  adjVertex is adjacent vertex relative to count relations
+ *  output      :   change of array (presence, and count_relations) in class
+ *  date        :   2021.07.29
+ *  author      :   我
+ *  description :   recursive....
+ */
+int GRAPH::countAdjVertex(int vertex, int adjVertex) {
+    if (presence[vertex] == 1)
+        return 0;
+    presence[vertex] = 1;
+    for (int i = 0; i < N_vertex; i++) {
+        if (AdjMatrix[vertex][i] == 1) {
+            if (i == adjVertex) {
+                count_relations[vertex]++;
+            }
+            else if (adjVertex == -1) {
+                count_relations[vertex]++;
+            }
+            if (presence[i] == 0) {
+                countAdjVertex(i, adjVertex);
+            }
+        }
+    }
+    return 0;
+}
+
+INFO_VERTEX* GRAPH::GetListVertex() {
+    restartPresence();
+    restartRelations();
+
+    countAdjVertex(0);
+
+    INFO_VERTEX* infoVertex = new INFO_VERTEX(N_vertex + 1);
+
+    for (int i = 0; i < N_vertex; i++) {
+        int indMax = array1D_GetIndexMax(count_relations, N_vertex);
+        infoVertex->push({indMax, count_relations[indMax]});
+        count_relations[indMax] = std::numeric_limits<int>::min();
+    }
+
+    return infoVertex;
+}
+
+int GRAPH::getNVertex() const {
+    return N_vertex;
+}
+
