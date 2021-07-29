@@ -4,6 +4,4 @@
 *log.*
 *.a
 *.obj
-*.includecache
-*.txt
-cmake-build-debug/
+*untitled*
