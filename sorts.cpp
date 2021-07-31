@@ -42,7 +42,6 @@ void mergeArray(pair<int/*size*/, int* /*array*/> ar1, pair<int /*size*/, int* /
     array1D_Copy(ar1.second, &res_ar[0], ar1.first);
     array1D_Copy(ar2.second, &res_ar[ar1.first], ar2.first);
 
-
     delete [] res_ar;
 }
 
