@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/cpp_proj.dir/main.cpp.obj"
+  "CMakeFiles/cpp_proj.dir/my_hash.cpp.obj"
   "cpp_proj.exe"
   "cpp_proj.exe.manifest"
   "cpp_proj.pdb"

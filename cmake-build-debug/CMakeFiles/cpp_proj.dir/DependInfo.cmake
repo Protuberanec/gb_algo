@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "M:/Projects/cpp/GeekBrains/algo_course/main.cpp" "M:/Projects/cpp/GeekBrains/algo_course/cmake-build-debug/CMakeFiles/cpp_proj.dir/main.cpp.obj"
+  "M:/Projects/cpp/GeekBrains/algo_course/my_hash.cpp" "M:/Projects/cpp/GeekBrains/algo_course/cmake-build-debug/CMakeFiles/cpp_proj.dir/my_hash.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

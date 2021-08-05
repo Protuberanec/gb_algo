@@ -152,6 +152,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+my_hash.obj: my_hash.cpp.obj
+.PHONY : my_hash.obj
+
+# target to build an object file
+my_hash.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/my_hash.cpp.obj
+.PHONY : my_hash.cpp.obj
+
+my_hash.i: my_hash.cpp.i
+.PHONY : my_hash.i
+
+# target to preprocess a source file
+my_hash.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/my_hash.cpp.i
+.PHONY : my_hash.cpp.i
+
+my_hash.s: my_hash.cpp.s
+.PHONY : my_hash.s
+
+# target to generate assembly for a file
+my_hash.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/my_hash.cpp.s
+.PHONY : my_hash.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -164,6 +188,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... my_hash.obj
+	@echo ... my_hash.i
+	@echo ... my_hash.s
 .PHONY : help
 
 

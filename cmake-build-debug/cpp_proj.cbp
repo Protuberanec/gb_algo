@@ -86,6 +86,12 @@
 		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/main.cpp">
 			<Option target="cpp_proj"/>
 		</Unit>
+		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/my_hash.cpp">
+			<Option target="cpp_proj"/>
+		</Unit>
+		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/my_hash.h">
+			<Option target="cpp_proj"/>
+		</Unit>
 		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

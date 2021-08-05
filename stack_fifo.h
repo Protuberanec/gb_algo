@@ -5,6 +5,7 @@
 #ifndef CPP_PROJ_STACK_FIFO_H
 #define CPP_PROJ_STACK_FIFO_H
 
+#include <iostream>
 
 template<typename T>
 class FIFO {
@@ -28,6 +29,16 @@ public:
     int push(const T& el);
     int pop(T& el);
 
+    int ShowAllElements() {
+        for (int i = 0; i < last_el_index+1; i++) {
+            std::cout << fifo_data[i] << " ";
+        }
+        std::cout << std::endl;
+        return last_el_index;
+    }
+    int getAmountEl() const {
+        return last_el_index + 1;
+    }
 };
 
 template<typename T>
