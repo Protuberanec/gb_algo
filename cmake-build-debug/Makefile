@@ -176,6 +176,30 @@ my_hash.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/my_hash.cpp.s
 .PHONY : my_hash.cpp.s
 
+stack_fifo.obj: stack_fifo.cpp.obj
+.PHONY : stack_fifo.obj
+
+# target to build an object file
+stack_fifo.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/stack_fifo.cpp.obj
+.PHONY : stack_fifo.cpp.obj
+
+stack_fifo.i: stack_fifo.cpp.i
+.PHONY : stack_fifo.i
+
+# target to preprocess a source file
+stack_fifo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/stack_fifo.cpp.i
+.PHONY : stack_fifo.cpp.i
+
+stack_fifo.s: stack_fifo.cpp.s
+.PHONY : stack_fifo.s
+
+# target to generate assembly for a file
+stack_fifo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/stack_fifo.cpp.s
+.PHONY : stack_fifo.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -191,6 +215,9 @@ help:
 	@echo ... my_hash.obj
 	@echo ... my_hash.i
 	@echo ... my_hash.s
+	@echo ... stack_fifo.obj
+	@echo ... stack_fifo.i
+	@echo ... stack_fifo.s
 .PHONY : help
 
 

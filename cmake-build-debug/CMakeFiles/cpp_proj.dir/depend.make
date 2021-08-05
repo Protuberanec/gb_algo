@@ -4,9 +4,13 @@
 CMakeFiles/cpp_proj.dir/main.cpp.obj: \
  ../ConsoleWork.h \
  ../array_func.h \
+<<<<<<< HEAD
  ../main.cpp \
  ../my_hash.h \
  ../stack_fifo.h
 CMakeFiles/cpp_proj.dir/my_hash.cpp.obj: \
  ../my_hash.cpp \
  ../my_hash.h
+=======
+ ../main.cpp
+>>>>>>> 00f0cd7338ecb3e35fccb53b671d475233178ff4

@@ -5,8 +5,11 @@ CMakeFiles/cpp_proj.dir/main.cpp.obj
  M:/Projects/cpp/GeekBrains/algo_course/ConsoleWork.h
  M:/Projects/cpp/GeekBrains/algo_course/array_func.h
  M:/Projects/cpp/GeekBrains/algo_course/main.cpp
+<<<<<<< HEAD
  M:/Projects/cpp/GeekBrains/algo_course/my_hash.h
  M:/Projects/cpp/GeekBrains/algo_course/stack_fifo.h
 CMakeFiles/cpp_proj.dir/my_hash.cpp.obj
  M:/Projects/cpp/GeekBrains/algo_course/my_hash.cpp
  M:/Projects/cpp/GeekBrains/algo_course/my_hash.h
+=======
+>>>>>>> 00f0cd7338ecb3e35fccb53b671d475233178ff4

@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "M:/Projects/cpp/GeekBrains/algo_course/main.cpp" "M:/Projects/cpp/GeekBrains/algo_course/cmake-build-debug/CMakeFiles/cpp_proj.dir/main.cpp.obj"
   "M:/Projects/cpp/GeekBrains/algo_course/my_hash.cpp" "M:/Projects/cpp/GeekBrains/algo_course/cmake-build-debug/CMakeFiles/cpp_proj.dir/my_hash.cpp.obj"
+  "M:/Projects/cpp/GeekBrains/algo_course/stack_fifo.cpp" "M:/Projects/cpp/GeekBrains/algo_course/cmake-build-debug/CMakeFiles/cpp_proj.dir/stack_fifo.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
