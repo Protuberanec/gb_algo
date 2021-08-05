@@ -2,11 +2,8 @@
 #include <iostream>
 #include <limits>
 #include <assert.h>
-#include "array_func.h" //standard function to work with array... very usefull...
-#include "ConsoleWork.h"    //stupid attempt to write own lib to work with console...
 #include "my_hash.h"
 #include "stack_fifo.h"
-
 
 using namespace std;
 
@@ -71,7 +68,6 @@ int main(int argc, char** argv) {
 
     simple_hash();
     greedy_algo();
-
     std::cout << "\t\tall tests passed OK" << std::endl;
 
     return 0;
