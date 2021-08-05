@@ -152,6 +152,7 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+<<<<<<< HEAD
 my_hash.obj: my_hash.cpp.obj
 .PHONY : my_hash.obj
 
@@ -176,6 +177,8 @@ my_hash.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/my_hash.cpp.s
 .PHONY : my_hash.cpp.s
 
+=======
+>>>>>>> 00f0cd7... lesson13 (graph) tasks is solved
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -188,9 +191,12 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+<<<<<<< HEAD
 	@echo ... my_hash.obj
 	@echo ... my_hash.i
 	@echo ... my_hash.s
+=======
+>>>>>>> 00f0cd7... lesson13 (graph) tasks is solved
 .PHONY : help
 
 
