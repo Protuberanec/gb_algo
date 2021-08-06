@@ -152,53 +152,29 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-my_hash.obj: my_hash.cpp.obj
-.PHONY : my_hash.obj
+my_crypto.obj: my_crypto.cpp.obj
+.PHONY : my_crypto.obj
 
 # target to build an object file
-my_hash.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/my_hash.cpp.obj
-.PHONY : my_hash.cpp.obj
+my_crypto.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/my_crypto.cpp.obj
+.PHONY : my_crypto.cpp.obj
 
-my_hash.i: my_hash.cpp.i
-.PHONY : my_hash.i
-
-# target to preprocess a source file
-my_hash.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/my_hash.cpp.i
-.PHONY : my_hash.cpp.i
-
-my_hash.s: my_hash.cpp.s
-.PHONY : my_hash.s
-
-# target to generate assembly for a file
-my_hash.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/my_hash.cpp.s
-.PHONY : my_hash.cpp.s
-
-stack_fifo.obj: stack_fifo.cpp.obj
-.PHONY : stack_fifo.obj
-
-# target to build an object file
-stack_fifo.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/stack_fifo.cpp.obj
-.PHONY : stack_fifo.cpp.obj
-
-stack_fifo.i: stack_fifo.cpp.i
-.PHONY : stack_fifo.i
+my_crypto.i: my_crypto.cpp.i
+.PHONY : my_crypto.i
 
 # target to preprocess a source file
-stack_fifo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/stack_fifo.cpp.i
-.PHONY : stack_fifo.cpp.i
+my_crypto.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/my_crypto.cpp.i
+.PHONY : my_crypto.cpp.i
 
-stack_fifo.s: stack_fifo.cpp.s
-.PHONY : stack_fifo.s
+my_crypto.s: my_crypto.cpp.s
+.PHONY : my_crypto.s
 
 # target to generate assembly for a file
-stack_fifo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/stack_fifo.cpp.s
-.PHONY : stack_fifo.cpp.s
+my_crypto.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp_proj.dir\build.make CMakeFiles/cpp_proj.dir/my_crypto.cpp.s
+.PHONY : my_crypto.cpp.s
 
 # Help Target
 help:
@@ -212,12 +188,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... my_hash.obj
-	@echo ... my_hash.i
-	@echo ... my_hash.s
-	@echo ... stack_fifo.obj
-	@echo ... stack_fifo.i
-	@echo ... stack_fifo.s
+	@echo ... my_crypto.obj
+	@echo ... my_crypto.i
+	@echo ... my_crypto.s
 .PHONY : help
 
 

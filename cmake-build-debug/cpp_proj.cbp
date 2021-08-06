@@ -83,16 +83,10 @@
 		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/main.cpp">
 			<Option target="cpp_proj"/>
 		</Unit>
-		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/my_hash.cpp">
+		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/my_crypto.cpp">
 			<Option target="cpp_proj"/>
 		</Unit>
-		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/my_hash.h">
-			<Option target="cpp_proj"/>
-		</Unit>
-		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/stack_fifo.cpp">
-			<Option target="cpp_proj"/>
-		</Unit>
-		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/stack_fifo.h">
+		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/my_crypto.h">
 			<Option target="cpp_proj"/>
 		</Unit>
 		<Unit filename="M:/Projects/cpp/GeekBrains/algo_course/CMakeLists.txt">
