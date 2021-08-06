@@ -2,76 +2,144 @@
 #include <iostream>
 #include <limits>
 #include <assert.h>
-#include "array_func.h" //standard function to work with array... very usefull...
-#include "ConsoleWork.h"    //stupid attempt to write own lib to work with console...
-#include "my_hash.h"
-#include "stack_fifo.h"
-
-
+#include "my_crypto.h"
 using namespace std;
 
-//Реализовать простейшую хеш-функцию. На вход функции подается строка, на выходе сумма кодов символов.
-int simple_hash() {
-    cout << "HASH tasks" << endl;
-    {
-        const char STR[] = "test string";
-        cout << "hash string "<< STR << " " << hash_simple(STR) << endl;
+//Реализовать шифрование и расшифровку цезаря с передаваемым в функцию сообщением и ключом
+void test_cesar_crypto() {
+    cout << "\t---Caesar crypto---" << endl;
+    {   //test1
+        const char STR_CRYPT[] = "Denis";
+        const int KEY = 5;
+        char *res_code = cesar_crypto(STR_CRYPT, KEY);
+        cout << "string for crypto = " << STR_CRYPT << endl;
+        cout << "coded string : " << res_code << endl;
+        char *res_decode = cesar_decrypto(res_code, KEY);
+        cout << "decoded string : " << res_decode << endl;
+
+        delete [] res_code;
+        delete [] res_decode;
     }
-    return 0;
+
+    {   //test2
+        const char STR_CRYPT[] = "Denis";
+        const int KEY = 35;
+        char *res_code = cesar_crypto(STR_CRYPT, KEY);
+        cout << "string for crypto = " << STR_CRYPT << endl;
+        cout << "coded string : " << res_code << endl;
+        char *res_decode = cesar_decrypto(res_code, KEY);
+        cout << "decoded string : " << res_decode << endl;
+
+        delete [] res_code;
+        delete [] res_decode;
+    }
+    {   //test2
+        const char STR_CRYPT[] = "The cat love to walk on a roof!!!";
+        const int KEY = 35;
+        char *res_code = cesar_crypto(STR_CRYPT, KEY);
+        cout << "string for crypto = " << STR_CRYPT << endl;
+        cout << "coded string : " << res_code << endl;
+        char *res_decode = cesar_decrypto(res_code, KEY);
+        cout << "decoded string : " << res_decode << endl;
+
+        delete [] res_code;
+        delete [] res_decode;
+    }
 }
-//Имеются монеты номиналом 50, 10, 5, 2, 1 коп. Напишите функцию которая минимальным количеством монет наберет сумму 98 коп.
-// Для решения задачи используйте “жадный” алгоритм.
+//Реализовать шифрование и расшифровку перестановками с передаваемым в функцию сообщением и количеством столбцов
 
-FIFO<int>* GetCoins(int sum_coins = 98) {
-    FIFO<int>* results = new FIFO<int>();
-    int array[5] = {50, 10, 5, 2, 1};
+void test_table_crypto() {
+    cout << "\n\t---table crypto---" << endl;
 
-    int res_sum = 0;
-    while (sum_coins) {
-        for (int i = 0; i < 5; i++) {
-            if (sum_coins - res_sum >= array[i]) {
-                results->push(array[i]);
-                sum_coins -= array[i];
-                break;
-            }
-        }
+    {   //test1
+        cout << "---test 1---" << endl;
+        const char STR[] = "The cat very like to walk on a roof!!!";
+        int key = 2;
+        char* res = table_crypto(STR, key);
+        char* res1 = table_decrypto(res, key);
+        cout << "\tstart string = \t" << STR << endl;
+        cout << "\tcoded string = \t" << res << endl;
+        cout << "\tdecoded string = \t" << res1 << endl;
+        cout << "------" << endl;
 
+        delete [] res;
+        delete [] res1;
     }
-    return results;
+    {   //test2
+        cout << "---test 2---" << endl;
+        const char STR[] = "The cat very like to walk on a roof!!!";
+        int key = 3;
+        char* res = table_crypto(STR, key);
+        char* res1 = table_decrypto(res, key);
+        cout << "\tstart string = \t" << STR << endl;
+        cout << "\tcoded string = \t" << res << endl;
+        cout << "\tdecoded string = \t" << res1 << endl;
+        cout << "------" << endl;
+
+        delete [] res;
+        delete [] res1;
+    }
+    {   //test3
+        cout << "---test 3---" << endl;
+        const char STR[] = "The cat very like to walk on a roof!!!";
+        int key = 4;
+        char* res = table_crypto(STR, key);
+        char* res1 = table_decrypto(res, key);
+        cout << "\tstart string = \t" << STR << endl;
+        cout << "\tcoded string = \t" << res << endl;
+        cout << "\tdecoded string = \t" << res1 << endl;
+        cout << "------" << endl;
+
+        delete [] res;
+        delete [] res1;
+    }
+    {   //test4
+        cout << "---test 4---" << endl;
+        const char STR[] = "The cat very like to walk on a roof!!!";
+        int key = 7;
+        char* res = table_crypto(STR, key);
+        char* res1 = table_decrypto(res, key);
+        cout << "\tstart string = \t" << STR << endl;
+        cout << "\tcoded string = \t" << res << endl;
+        cout << "\tdecoded string = \t" << res1 << endl;
+        cout << "------" << endl;
+
+        delete [] res;
+        delete [] res1;
+    }
+    {   //test5
+        cout << "---test 5---" << endl;
+        const char STR[] = "The cat very like to walk on a roof!!!";
+        int key = 21;
+        char* res = table_crypto(STR, key);
+        char* res1 = table_decrypto(res, key);
+        cout << "\tstart string = \t" << STR << endl;
+        cout << "\tcoded string = \t" << res << endl;
+        cout << "\tdecoded str = \t" << res1 << endl;
+        cout << "------" << endl;
+
+        delete [] res;
+        delete [] res1;
+    }
+    {   //test6
+        cout << "---test 6---" << endl;
+        const char STR[] = "The cat very like to walk on a roof!!!";
+        int key = 31;
+        char* res = table_crypto(STR, key);
+        char* res1 = table_decrypto(res, key);
+        cout << "\tstart string = \t" << STR << endl;
+        cout << "\tcoded string = \t" << res << endl;
+        cout << "\tdecoded str = \t" << res1 << endl;
+        cout << "------" << endl;
+
+        delete [] res;
+        delete [] res1;
+    }
 }
-
-
-void greedy_algo() {
-    {   //test 1
-        auto result = GetCoins();
-        int number_coins = result->getAmountEl();
-        cout << "for 98 coins = " << number_coins << " : ";
-        result->ShowAllElements();
-        delete result;
-    }
-    {   //test 2
-        auto result = GetCoins(153);
-        int number_coins = result->getAmountEl();
-        cout << "for 153 coins = " << number_coins << " : ";
-        result->ShowAllElements();
-        delete result;
-    }
-    {   //test 3
-        auto result = GetCoins(15);
-        int number_coins = result->getAmountEl();
-        cout << "for 153 coins = " << number_coins << " : ";
-        result->ShowAllElements();
-        delete result;
-    }
-
-
-}
-
 
 int main(int argc, char** argv) {
-
-    simple_hash();
-    greedy_algo();
+    test_cesar_crypto();
+    test_table_crypto();
 
     std::cout << "\t\tall tests passed OK" << std::endl;
 

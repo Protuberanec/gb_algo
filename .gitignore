@@ -5,3 +5,4 @@
 *.a
 *.obj
 *untitled*
+cmake-build-debug/CMakeFiles/cpp_proj.dir/
